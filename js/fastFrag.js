@@ -11,17 +11,17 @@
             usage
 
             // element 'type' is always assumed to be a div unless otherwise noted via 'type' attr
-            fastFrag.create({
+            fastFrag.create([{
                 css : "a_class_name",
                 content : "string here"
-            })
+            }])
             content is REQUIRED, set to empty string or element is skipped (when === undefined )
 
             //returns <div class="a_class_name">string here</div>
 
             Get more complex with with nested elements:
 
-            fastFrag.create({
+            fastFrag.create([{
                 css : "a_class_name",
                 content : [{
                     type : "a"
@@ -32,7 +32,7 @@
                 }, {
                     content : "child two"
                 }]
-            })   
+            }])   
 
             // returns   
             <div class="a_class_name">
