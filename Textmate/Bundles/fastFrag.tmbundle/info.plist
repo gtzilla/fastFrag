@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>fastFrag</string>
+	<key>ordering</key>
+	<array>
+		<string>CF008BD9-4EA0-4997-83C4-9339CD9760CC</string>
+		<string>72B2818B-4D8B-4310-859B-1D8E5A6D2CC4</string>
+		<string>125BD7EB-C5DD-4C07-90D8-72AE662EE7C6</string>
+	</array>
+	<key>uuid</key>
+	<string>A5F13773-A5ED-4C67-88A0-BF2946C7C3A0</string>
+</dict>
+</plist>

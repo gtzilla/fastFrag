@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>{
+    type : "ul",
+    css : "${1:ul_list}",
+    content : [{
+       type : "li",
+       content : {
+           type : "a",
+           content : "${2:my link}",
+           attributes : {
+               href : "#"
+           }
+       } 
+    },{
+        type : "li",
+        content : {
+            type : "a",
+            content : "${3:my link}",
+            attributes : {
+                href : "#"
+            }
+        }        
+    }]
+}</string>
+	<key>name</key>
+	<string>fastfrag_list</string>
+	<key>tabTrigger</key>
+	<string>list</string>
+	<key>uuid</key>
+	<string>CF008BD9-4EA0-4997-83C4-9339CD9760CC</string>
+</dict>
+</plist>
