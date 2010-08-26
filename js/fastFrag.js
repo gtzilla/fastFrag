@@ -47,6 +47,22 @@
 
         create : function( params ) {
             return drawHTML(params);
+        },
+        
+        extend : function( orig, params ) {
+            // extend an existing object or frag... umm the latter seems really hard.
+            console.log("orig", orig);
+            console.log("update", params)
+        },
+        
+        search : function(term) {
+            console.log("yeah, we're looking... dont't hold your breath")
+            // perform a search against a fast frag
+            // 1. determine if object or doc frag
+            // 2. fork
+            //      json walk for oject
+            //      dom walk for frag
+            // return appropriate, object data or element
         }
         
     };
@@ -83,8 +99,14 @@
                      .replace(reg4, "&gt;").replace(reg5, "&lt;") ) || "";
     } 
     function _singleNode( o ) {
-
         var frag = d.createDocumentFragment(), el, el_name, content_type, txt;
+        
+        if(o.text !== undefined) {
+            txt = d.createTextNode( o.text );
+            frag.appendChild(txt);
+            return frag;
+        }
+        
         content_type = typeof o.content;            
         el_name = ( safe_el.indexOf( o.type ) > -1 ) ? o.type : "div";
         el = _mke( el_name );
