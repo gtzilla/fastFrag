@@ -42,9 +42,9 @@ Usage
         css : "a_class_name",
         content : "string here"
     })
-content is REQUIRED, set to empty string or element is skipped (when === undefined )
 
-//returns 
+
+//returns Document Fragment
     <div class="a_class_name">string here</div>
 
 Get more complex with with nested elements:
@@ -62,8 +62,36 @@ Get more complex with with nested elements:
         }]
     })
 
-// returns
+// returns Document Fragment
     <div class="a_class_name">
         <a href="http://whatever.com">child one</a>
         <div>child two</div>
     </div>
+    
+    
+    
+// create the below html with fastFrag
+    <div class="mainClass">
+        <a href="http://github.com/gregory80/fastFrag">Fast Frag Repos</a> | <a href="#">link two</a>
+    </div>    
+    
+    
+    
+    fastFrag.create({
+        css : "mainClass",
+        content : [{
+            type : "a",
+            content : "Fast Frag Repos"
+            attributes : {
+                href : "http://github.com/gregory80/fastFrag"
+            }
+        },{
+            text : " | "
+        },{
+            type : "a",
+            content : "link two"
+            attributes : {
+                href : "#"
+            }
+        }]
+    })

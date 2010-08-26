@@ -14,7 +14,7 @@
 	<key>name</key>
 	<string>fastfrag_link</string>
 	<key>tabTrigger</key>
-	<string>link</string>
+	<string>fraglink</string>
 	<key>uuid</key>
 	<string>125BD7EB-C5DD-4C07-90D8-72AE662EE7C6</string>
 </dict>
