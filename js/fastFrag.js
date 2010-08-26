@@ -12,10 +12,10 @@
     };
     window.fastFrag = fastFrag;
 
-    var safe_el = ["script","img","a","link","li","ul","canvas","div","input","select","options",
-                    "option","form","textarea", "span", "i", "body", "head", "p", "dl", "em", "dd",
+    var safe_el = ["script","img","a","link","li","ul","canvas","div","input","select","options", "hr", "item",
+                    "option","form","textarea", "span", "i", "body", "head", "p", "dl", "em", "dd", "label",
                     "h1","h2","h3","h4","h5","h6","b","strong"],
-        d = document, reg1, reg2, reg3, reg4, reg5;
+        d = document;
     
     function drawHTML( params ) {
         var frag = d.createDocumentFragment(), k, el;
@@ -35,7 +35,12 @@
         return document.createElement( elem );
     }
     function _mke_attribute( el, attrs ) {
-        for(var k in attrs) { el.setAttribute(k, _safe( attrs[k] ) ); }
+        var safe_value;
+        for(var k in attrs) { 
+            // yuck
+            if(k === "disabled" && !attrs[k]) { continue; }
+            el.setAttribute(k, _safe( attrs[k] ) ); 
+        }
         return el;
     }
     function _make_element( o ) {

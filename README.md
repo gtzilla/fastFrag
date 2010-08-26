@@ -33,9 +33,9 @@ For more information, please refer to <http://unlicense.org/>
 Original unlicensed with http://sam.zoy.org/wtfpl/
 
 
-
+Usage
 -------
-usage
+
 
 // element 'type' is always assumed to be a div unless otherwise noted via 'type' attr
     fastFrag.create({
@@ -44,7 +44,8 @@ usage
     })
 content is REQUIRED, set to empty string or element is skipped (when === undefined )
 
-//returns <div class="a_class_name">string here</div>
+//returns 
+    <div class="a_class_name">string here</div>
 
 Get more complex with with nested elements:
 
