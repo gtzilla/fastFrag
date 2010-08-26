@@ -38,31 +38,31 @@ Original unlicensed with http://sam.zoy.org/wtfpl/
 usage
 
 // element 'type' is always assumed to be a div unless otherwise noted via 'type' attr
-fastFrag.create({
-    css : "a_class_name",
-    content : "string here"
-})
+    fastFrag.create({
+        css : "a_class_name",
+        content : "string here"
+    })
 content is REQUIRED, set to empty string or element is skipped (when === undefined )
 
 //returns <div class="a_class_name">string here</div>
 
 Get more complex with with nested elements:
 
-fastFrag.create({
-    css : "a_class_name",
-    content : [{
-        type : "a"
-        content : "child one",
-        attributes : {
-            href : "http://whatever.com"
-        }
-    }, {
-        content : "child two"
-    }]
-})
+    fastFrag.create({
+        css : "a_class_name",
+        content : [{
+            type : "a"
+            content : "child one",
+            attributes : {
+                href : "http://whatever.com"
+            }
+        }, {
+            content : "child two"
+        }]
+    })
 
 // returns
-<div class="a_class_name">
-    <a href="http://whatever.com">child one</a>
-    <div>child two</div>
-</div>
+    <div class="a_class_name">
+        <a href="http://whatever.com">child one</a>
+        <div>child two</div>
+    </div>
