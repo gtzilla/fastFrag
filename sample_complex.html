@@ -32,11 +32,12 @@
             
         </div> <!-- end #container -->
     
-        
+            <script type="text/javascript" src="js/quotes.js"></script>        
             <script type="text/javascript" src="js/fastFrag.js"></script>
             <script type="text/javascript" charset="utf-8">
                 var results, structure, now = (new Date()).getTime(), structure_items = [],
-                    quotes = ["Homer: D'oh.", "Ralph: Me fail English? That's unpossible.", "Lionel Hutz: This is the greatest case of false advertising I've seen since I sued the movie 'The Never Ending Story.'", "Sideshow Bob: No children have ever meddled with the Republican Party and lived to tell about it.", "Troy McClure: Don't kid yourself, Jimmy. If a cow ever got the chance, he'd eat you and everyone you care about!", "Comic Book Guy: The Internet King? I wonder if he could provide faster nudity…", "Homer: Oh, so they have Internet on computers now!", "Ned Flanders: I've done everything the Bible says — even the stuff that contradicts the other stuff!", "Comic Book Guy: Your questions have become more redundant and annoying than the last three 'Highlander' movies.", "Chief Wiggum: Uh, no, you got the wrong number. This is 9-1…2."];
+                    // via external file, js/quotes.js
+                    quotes = simpson_quotes;
             
             
                 for( var i=0; i<quotes.length; i++) {
@@ -56,10 +57,20 @@
                     css : "contentsContainer",
                     content : [{
                         type : "h3",
-                        content : "A List of"
+                        content : "A List of Simpsons quotes"
                     },{
                         type : "ul",
                         content : structure_items
+                    },{
+                        content : {
+                            type : "a",
+                            css : "simpsonslink",
+                            content : "The Complete List",
+                            attributes : {
+                                href : "http://blogzarro.com/2007/07/100-greatest-simpsons-quotes/",
+                                target : 'new'
+                            }                            
+                        }
                     }]
                 },{
                     id : "footer",
@@ -85,9 +96,9 @@
                     }]
                 }]
             
-                results = fastFrag.create(structure);
-                
-                middle.appendChild(results);
+                results = fastFrag.create(structure);                
+                // in chrome or safari, middle.appendChild() works, not in FF
+                document.querySelector('#middle').appendChild(results);
             </script>
       
     </body>
