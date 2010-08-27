@@ -188,6 +188,7 @@ Since I like simple, easy to understand things. I wrote fastFrag in a few hours 
 
 FAQ
 -------
+
 * Should I change my server JSON responses to work with fastFrag?
 
     No, it would be smarter to just changed the keys in fastFrag to work with your DATA if that is your intention. Since fastFrag is unlicensed (see top of README file or unlicense.org) you can fork this code and do just that. Otherwise, you probably already have 'middle' layer code to manipulate server data, that is where fastFrag comes in, it just makes the process of turning that data into HTML, well faster.
@@ -220,4 +221,38 @@ FAQ
 * Why this syntax?
 
     It seemed simple and I wanted to avoid and possible conflicts or errors if the Object key is not quoted, for example 'class' is a keyword for some environments, css, is not.  I'm not married to it, any suggestions are welcome, please send me a note or file an issue: http://github.com/gregory80/fastFrag/issues
+    
+    Though there are still some cases where this is unavoidable, the 'for=""' attribute on labels comes to mind, 'for' must be quoted. For example
+    
+        var structure = {
+            type : "label",
+            content : "My label",
+            attributes : {
+                'for' : 'the_input_id'
+            }
+        }
+ 
+* Aren't we mixing form and function
+    
+    Well, sort of, it's an improvement over using strings, now your 'data' is in JSON, which is a highly structured data transport vehicle. Since, it's native to JavaScript, it's simple to convert JSON. Converting strings on the other hand... well, how are your regular expression skills?
+    
+    Beyond the above, yes, in order to use fastFrag, you either have to change to its syntax, or change the syntax of fastFrag, which you are welcome to do, please tell use about it if so.  Since fastFrag needs JSON to operate, getting the data out of fastFrag 'syntax' is an simple as writing, the below, so it's doesn't seem like a bad thing.
+    
+        for(var k in obj) { ... }
+    
+    
+Benefits
+--------
+
+I find the primary benefit of fastFrag, over concatenated strings specifically, is the end of unbalanced 'divs' or other elements. Each element is properly closed. Any 'errors' in the JSON show up clearly with a line number, 'Unexpected Identifier' for example, which means a comma is missing. This makes debugging even the most complex HTML structures very, very fast.
+
+In addition, the speed benefits of the library have been shocking to me. After repeatedly finding 'innerHTML' to be fast in any environment, fastFrag beats that. I'm working on a stats chart and example to demonstrate this.
+
+fastFrag minimizes manipulation of the DOM api, which is generally considered to be 'slow'. fastFrag allows for infinitely complex JSON structures, that can be appended to the DOM in a single line of code. 
+    
+    document.body.appendChild( fastFrag.create({ content : [...] }) );
+    
+or, better yet, just give it a list of elements and skip the 'wrapper'
+
+    document.body.appendChild( fastFrag.create([....]) );
 

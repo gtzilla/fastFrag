@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="cache-manifest">
+
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Fast Frag Sample Basic</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+            <script type="text/javascript" src="js/fastFrag.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                var results, structure, now = (new Date()).getTime(), structure_items = [],
+                    quotes = ["Homer: D'oh.", "Ralph: Me fail English? That's unpossible.", "Lionel Hutz: This is the greatest case of false advertising I've seen since I sued the movie 'The Never Ending Story.'", "Sideshow Bob: No children have ever meddled with the Republican Party and lived to tell about it.", "Troy McClure: Don't kid yourself, Jimmy. If a cow ever got the chance, he'd eat you and everyone you care about!", "Comic Book Guy: The Internet King? I wonder if he could provide faster nudity…", "Homer: Oh, so they have Internet on computers now!", "Ned Flanders: I've done everything the Bible says — even the stuff that contradicts the other stuff!", "Comic Book Guy: Your questions have become more redundant and annoying than the last three 'Highlander' movies.", "Chief Wiggum: Uh, no, you got the wrong number. This is 9-1…2."];
+            
+            
+                for( var i=0; i<quotes.length; i++) {
+                    structure_items.push({
+                        type : "li",
+                        content : quotes[i]
+                    })
+                }
+            
+                structure = [{
+                    type : "h1",
+                    content : "Hello Fast Frag"
+                },{
+                    type :"p",
+                    content : "Welcome to the more complex example of fastFrag"
+                },{
+                    css : "contentsContainer",
+                    content : [{
+                        type : "h3",
+                        content : "A List of"
+                    },{
+                        type : "ul",
+                        content : structure_items
+                    }]
+                },{
+                    id : "footer",
+                    content : [{
+                        type : "form",
+                        content : [{
+                            type : "input",
+                            id : "value_1",
+                            attributes : {
+                                type : "checkbox",
+                                name : "value_1",
+                                value : "yes",
+                                checked : true
+                                
+                            }
+                        },{
+                            type : "label",
+                            content : "Fast?",
+                            attributes : {
+                                'for' : 'value_1' 
+                            }
+                        }]
+                    }]
+                }]
+            
+                results = fastFrag.create(structure);
+                
+                middle.appendChild(results);
+            </script>
+      
+    </body>
+</html>
