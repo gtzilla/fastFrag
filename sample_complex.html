@@ -39,11 +39,18 @@
                     // via external file, js/quotes.js
                     quotes = simpson_quotes;
             
-            
+                var quote, pos, name, text;
                 for( var i=0; i<quotes.length; i++) {
+                    quote = quotes[i];
+                    pos = quote.indexOf(":"); name = quote.substring(0,pos); text = quote.substring(pos) || "";
                     structure_items.push({
                         type : "li",
-                        content : quotes[i]
+                        content : [{
+                            type : "b",
+                            content : name
+                        }, {
+                            'text' : text
+                        }]
                     })
                 }
             
