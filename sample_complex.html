@@ -105,7 +105,13 @@
             
                 results = fastFrag.create(structure);                
                 // in chrome or safari, middle.appendChild() works, not in FF
-                document.querySelector('#middle').appendChild(results);
+                var middle = document.querySelector('#middle')
+                middle.appendChild(results);
+                finish = (new Date()).getTime();
+                var diff = finish - now;
+                console.log( "differnce",  diff);
+                document.querySelector('#top').appendChild( fastFrag.create({ content : "rendered in: "  + diff + " milliseconds" }) );
+                
             </script>
       
     </body>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="cache-manifest">
+
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Fast Frag Sample Basic</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+            <script type="text/javascript" src="js/quotes.js"></script>        
+            <script type="text/javascript" charset="utf-8">
+                var results, structure, now = (new Date()).getTime(), structure_items = [],
+                    // via external file, js/quotes.js
+                    quotes = simpson_quotes, html = "";
+            
+                var quote, pos, name, text;
+                
+                html += '<h1>Hello Fast Frag</h1>'
+                html += '<p>Welcome to the more complex example of fastFrag</p>';
+                html += '<div class="contentsContainer">'
+                    html += '<h3>A List of Simpsons quotes</h3>'
+                    html += '<ul>'
+                for( var i=0; i<quotes.length; i++) {
+                    quote = quotes[i];
+                    pos = quote.indexOf(":"); name = quote.substring(0,pos); text = quote.substring(pos) || "";
+                    
+                    html += '<li>';
+                        html += '<b>'+ name +'</b>'
+                        html += text;
+                    html += '</li>';
+                }
+                html += "</ul>"
+                html += '<a class="simpsonslink" target="new" href="http://blogzarro.com/2007/07/100-greatest-simpsons-quotes/">The Complete List</a>'
+                html += '</div>' 
+                
+                html += '<div id="footer">'
+                    html += '<form>'
+                        html += '<input type="checkbox" name="value_1" checked value="yes" id="value_1">'
+                        html += '<label for="value_1">Fast?</label>';
+                        
+                    html += '</form>'                    
+                html += '</div>'               
+            
+               
+                          
+                // in chrome or safari, middle.appendChild() works, not in FF
+                var middle = document.querySelector('#middle')
+                middle.innerHTML = html;
+                
+                finish = (new Date()).getTime();
+                var diff = finish - now;
+                console.log( "differnce",  diff);
+                document.querySelector('#top').innerHTML =  "rendered in: "  + diff + " milliseconds";
+                
+            </script>
+      
+    </body>
+</html>
