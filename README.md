@@ -1,6 +1,6 @@
 
 fastFrag
----
+=====
 
 A simple JS library for making HTML from JavaScript, see below for samples and usage
 

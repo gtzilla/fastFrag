@@ -12,10 +12,7 @@
     };
     window.fastFrag = fastFrag;
 
-    var safe_el = ["script","img","a","link","li","ul","canvas","div","input","select","options", "hr", "item",
-                    "option","form","textarea", "span", "i", "body", "head", "p", "dl", "em", "dd", "label",
-                    "h1","h2","h3","h4","h5","h6","b","strong"],
-        d = document;
+    var d = document;
     
     function drawHTML( params ) {
         var frag = d.createDocumentFragment(), k, el;
@@ -45,7 +42,7 @@
     }
     function _make_element( o ) {
         var el_name, el;
-        el_name = ( safe_el.indexOf( o.type ) > -1 ) ? o.type : "div";
+        el_name = o.type || "div";
         el = _mke( el_name );
         if(o.attributes) { _mke_attribute(el, o.attributes); }
         el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
