@@ -29,7 +29,7 @@
 	<key>name</key>
 	<string>fastfrag_list</string>
 	<key>tabTrigger</key>
-	<string>list</string>
+	<string>fraglist</string>
 	<key>uuid</key>
 	<string>CF008BD9-4EA0-4997-83C4-9339CD9760CC</string>
 </dict>

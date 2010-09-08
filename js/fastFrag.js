@@ -63,7 +63,7 @@
             } else if(content_type === "string") {
                 txt = d.createTextNode( o.content );
             } else {
-                txt_value = (o.content !== undefined) ? _safe( o.content.toString() || "")  : "";
+                txt_value = (o.content !== undefined) ? (o.content.toString() || "")  : "";
                 txt = d.createTextNode( txt_value );
             }
             el.appendChild( txt );

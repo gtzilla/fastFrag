@@ -15,7 +15,7 @@
 	<key>name</key>
 	<string>fastfrag_input</string>
 	<key>tabTrigger</key>
-	<string>inputfrag</string>
+	<string>fraginput</string>
 	<key>uuid</key>
 	<string>72B2818B-4D8B-4310-859B-1D8E5A6D2CC4</string>
 </dict>

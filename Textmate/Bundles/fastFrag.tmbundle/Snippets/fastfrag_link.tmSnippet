@@ -6,7 +6,7 @@
 	<string>{
     type : "a",
     css : "${1:myClass}",
-    content : ${2:"my content"}
+    content : ${2:"my content"},
     attributes : {
         href : "${3:#}"
     }
