@@ -185,6 +185,13 @@ Just from trying to read that, you can see that while quick to write ( not that 
 
 Since I like simple, easy to understand things. I wrote fastFrag in a few hours (weeks of testing). There are definitely other libraries out there, most have significantly more options or required some server side aspect to 'prep' the data and template. Since none of these did what I needed, I wrote this.
 
+Some Stats
+--------------
+
+Testing for innerHTML method on sample_inner_html_complex.html showed 5ms for layout, 5ms for paint
+
+fastFrag shows 4ms for layout, 1ms for paint.
+
 
 FAQ
 -------

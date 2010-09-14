@@ -32,11 +32,19 @@
             
         </div> <!-- end #container -->
     
-            <script type="text/javascript" src="js/quotes.js"></script>        
+            <script type="text/javascript" src="js/quotes.js"></script>  
+            <!-- include additional script to even out DOM event load time -->
+            <script type="text/javascript" src="js/fastFrag.js"></script>                  
             <script type="text/javascript" charset="utf-8">
-                var results, structure, now = (new Date()).getTime(), structure_items = [],
+                var results, structure, structure_items = [],
                     // via external file, js/quotes.js
                     quotes = simpson_quotes, html = "";
+            
+            
+                function escaper( string ) {
+                    return (string && string.replace(/&/mgi, "&amp;").replace(/"/mgi, "&quot;").replace(/'/mgi, "&#39;")
+                                 .replace(/>/mgi, "&gt;").replace(/</mgi, "&lt;") ) || "";
+                }            
             
                 var quote, pos, name, text;
                 
@@ -47,6 +55,7 @@
                     html += '<ul>'
                 for( var i=0; i<quotes.length; i++) {
                     quote = quotes[i];
+                    quote = escaper( quote );
                     pos = quote.indexOf(":"); name = quote.substring(0,pos); text = quote.substring(pos) || "";
                     
                     html += '<li>';
@@ -72,10 +81,7 @@
                 var middle = document.querySelector('#middle')
                 middle.innerHTML = html;
                 
-                finish = (new Date()).getTime();
-                var diff = finish - now;
-                console.log( "differnce",  diff);
-                document.querySelector('#top').innerHTML =  "rendered in: "  + diff + " milliseconds";
+
                 
             </script>
       

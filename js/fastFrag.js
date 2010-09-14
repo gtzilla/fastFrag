@@ -7,7 +7,8 @@
     var fastFrag = {
         create : function( params ) {
             return drawHTML(params);
-        }
+        },
+        version : "1.0.1"
     
     };
     window.fastFrag = fastFrag;
