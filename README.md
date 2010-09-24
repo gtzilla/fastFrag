@@ -2,7 +2,7 @@
 fastFrag
 =====
 
-A simple JS library for making HTML from JavaScript, see below for samples and usage
+A simple JS library for making HTML from JSON, see below for samples and usage. Comparisons and complete examples available in the project
 
 UNLICENSE
 -----
@@ -227,16 +227,7 @@ FAQ
 
 * Can I use it to create XML
     
-    Currently, fastFrag checks against a list of HTML elements and only allows one made up tag, 'item'. It doesn't validate attribute names, however, to use it to create XML, you need to fork the code and alter the line that contains
-    
-        safe_el.indexOf( o.type ) > -1
-    
-    And example might be
-        
-        // from 
-        el_name = ( safe_el.indexOf( o.type ) > -1 ) ? o.type : "div";
-        // to
-        el_name = o.type || "div";
+    Yes, though namespace may be an issue as it is untested. If you do use fastFrag to create namespaced XML, I would sincerely be interested in learning if it works.
 
 * Why this syntax?
 
