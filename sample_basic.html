@@ -19,7 +19,8 @@
         <div id="container">
 
             <div id="top">
-
+                <h1>A Simple Example of fastFrag.js</h1>
+                <p>Create a nested div, p,  and a link to the Fast Frag Repo</p>
             </div> <!-- end #top -->
             
             <div id="middle">
@@ -27,7 +28,26 @@
             </div> <!-- END #middle -->
         
             <div id="bottom">
+                <pre>
+// sample code
+var structure = {
+    css : "my_div_classname",
+    content : {
+        type : "p",
+        id : "an_html_id",
+        content : {
+            type : 'a',
+            attributes : {
+                href : 'http://github.com/gregory80/fastFrag'
+            },
+            content : "Fast Frag Repo"            
+        }
+    }
+}
 
+var fast_doc_frag = fastFrag.create( structure );
+document.getElementById('middle').appendChild( fast_doc_frag );
+                </pre>
             </div> <!-- end #bottom -->
             
         </div> <!-- end #container -->
@@ -35,15 +55,23 @@
         
             <script type="text/javascript" src="js/fastFrag.js"></script>
             <script type="text/javascript" charset="utf-8">
-                var results = fastFrag.create({
-                    type : 'a',
-                    attributes : {
-                        href : 'http://github.com/gregory80/fastFrag'
-                    },
-                    content : "Fast Frag Repo"
-                });
+                var structure = {
+                    css : "my_div_classname",
+                    content : {
+                        type : "p",
+                        id : "an_html_id",
+                        content : {
+                            type : 'a',
+                            attributes : {
+                                href : 'http://github.com/gregory80/fastFrag'
+                            },
+                            content : "Fast Frag Repo"            
+                        }
+                    }
+                }
                 
-                document.querySelector('#middle').appendChild(results);
+                var fast_doc_frag = fastFrag.create( structure );
+                document.getElementById('middle').appendChild( fast_doc_frag );
             </script>
       
     </body>
