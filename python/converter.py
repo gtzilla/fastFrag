@@ -37,10 +37,64 @@ from optparse import OptionParser
 class MyHTMLParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
-        print "Encountered the beginning of a %s tag" % tag
+        self.node_depth+=1
+        # print self.get_starttag_text()
+        frag = { 'type' : tag }
+        frag['attributes']={}
+        
+        for key,value in attrs:
+            if key == "id":
+                frag[key] = value
+            elif key == "class":
+                frag["css"] = value
+            elif key:
+                frag.get('attributes')[ key ] = value
+        
+                
+        if not self.fragList:
+            self.fragList = frag
+        else:
+            content = self.fragList
+            processer=True
+            if content:
+                counter = 0
+                while processer:
+                    counter+=1
+                    
+                    if type(content) == dict:
+                        if content.get('content'):
+                            content=content.get('content')
+                            continue
+                            
+                        if type(content) == dict:
+                            content['content']=[frag]
+                        else:
+                            # print "appending frag %s" % frag
+                            content.append( frag )
+                        processer=False
+                            
+                    elif type(content) == list:
+                        if counter < self.node_depth:
+                            content = content[ len(content)-1 ]
+                        else:
+                            processer=False
+                            content.append(frag)
 
     def handle_endtag(self, tag):
-        print "Encountered the end of a %s tag" % tag
+        # print self.fragList
+        self.node_depth-=1
+        #print "Encountered the end of a %s tag" % tag
+
+    
+    def close(self):
+        print json.dumps( self.fragList )
+        HTMLParser.close(self)
+    
+    def __init__(self):
+        self.fragList=None
+        self.node_depth=0
+        self.allFrags=[]
+        HTMLParser.__init__(self)
 
 
 def fetch_and_scrape( remote_url ):
@@ -58,10 +112,11 @@ def fetch_and_scrape( remote_url ):
         return 2
     
     body_string=json_data.get("content")
-    
     parser= MyHTMLParser()
-    
-    parser.feed( body_string )
+    # print "starts with %s" % body_string
+    print "::JSON ready"
+    response = parser.feed( body_string )
+    parser.close()
 
 def fetch_url( page_url ):
     response = urllib2.urlopen( page_url )    
@@ -100,8 +155,8 @@ if __name__ == '__main__':
 
 
     parser = OptionParser()
-    parser.add_option("-b", "--file", dest="remote_url",
-                      help="scrape a url, get only 'html' body element", metavar="URL")
+    parser.add_option("-b", dest="remote_url",
+                      help="Scrape 'html' body element structure (no text, only tags and attributes)", metavar="URL")
                       
     parser.add_option("-r", dest="remote_url", type="string", 
                         help="scrape a url", metavar="URL")                      
@@ -117,7 +172,6 @@ if __name__ == '__main__':
     if options.remote_url:
         fetch_and_scrape( options.remote_url )
     
-    print options,args
     
 
 
