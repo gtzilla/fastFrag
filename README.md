@@ -40,29 +40,24 @@ Overview
 
 Who, what when where why of fastFrag
 
-What is this?
-----------
-A really, really simple JS helper library for making HTML from JavaScript. See Usage for examples.
-
-
-Why do I want or need this?
-----------
-
-If you need to create HTML structure (somehow) with JavaScript, be that getting data from a server (AJAX) or rendering a button based on a certain state, this library is for you. As a benefit, it handles all the escaping worries you used to have. No more Regular Expressions to 'clean up' or escape data.
-
-
-When is this useful?
-----------
-
-When you need to render / change the DOM from JavaScript. 
-
 How does it work
 ----------
 
-You give fastFrag JSON and it gives you back a HTML (a Docment Fragment) that is ready to be added to the DOM.
+You give fastFrag JSON and it gives you back HTML (a Docment Fragment) that is ready to be added to the DOM.
 
 Syntax
 ----------
+
+A basic example of syntax is below, more complete examples and instructions are available below under Usage:
+
+    {
+        id : "myElemId",
+        content : "hello wolrd"
+    }
+
+
+Complex / More Complete Options
+
     {
         css : "myclass1 myclass2",       // optional
         id : "the_elem_id",              // optional
@@ -75,6 +70,25 @@ Syntax
         text : "a string"              // optional, creates a text only node. All other attributes ignored, see usage
     }
 
+
+
+What is fastFrag?
+----------
+A really, really simple JS helper library for making HTML (a document fragment) from JavaScript. See Usage for examples.
+
+
+Why do I want or need this?
+----------
+
+If you need to create HTML structure (somehow) with JavaScript, be that getting data from a server (AJAX) or rendering a button based on a certain state, this library is for you. 
+
+As a benefit, it handles all the escaping worries you used to have. No more Regular Expressions to 'clean up' or escape data.
+
+
+When is this useful?
+----------
+
+When you need to render / change the DOM [Document Object Model] from JavaScript.
 
 Usage
 -----
@@ -91,7 +105,7 @@ Usage
 
     fastFrag.create({})
 
-// return document fragment
+// return document fragment:
 
     <div></div>
 
@@ -197,11 +211,12 @@ FAQ
 -------
 
 * I already wrote my HTML, converting it seems annoying, got anything to make it less so?
+    
     Absolutely, in the python folder, there is a script that takes a variety of formats and returns fastFrag JSON, ready to go
     
         python converter.py -s '<div class="myClass"><a href="#link"><img src="image/image.src" border="0" /></a></div>'
         
-    This will return a fastFrag ready String, any text is currently admitted, providing structure only (looking for help adding that)
+    This will return a fastFrag ready JSON structure, any text is currently omitted, providing structure only (looking for help adding text support via a flag)
     
         {"content": [{"content": [{"attributes": {"src": "image/image.src", "border": "0"}, "type": "img"}], "attributes": {"href": "#link"}, "type": "a"}], "css": "myClass"}
         
