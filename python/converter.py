@@ -82,7 +82,7 @@ class MyHTMLParser(HTMLParser):
                             processer=False
                             content.append(frag)
             ## fix for non close tags... like image
-            if tag == "img" or tag == "input":
+            if tag == "img" or tag == "input" or tag == "hr" or tag == "meta":
                 self.node_depth-=1
     
     def handle_endtag(self, tag):
@@ -92,7 +92,7 @@ class MyHTMLParser(HTMLParser):
     
     
     def close(self):
-        print json.dumps( self.fragList )
+        print json.dumps( self.fragList, sort_keys=True, indent=4 )
         try:
             HTMLParser.close(self)
         except Exception,msg:
