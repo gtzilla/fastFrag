@@ -3,10 +3,8 @@
 import os
 import sys
 import json
-import xml.sax.saxutils
 import urllib2
 import urllib
-import getopt
 from HTMLParser import HTMLParser
 from optparse import OptionParser
 
@@ -22,12 +20,12 @@ from optparse import OptionParser
 # -r scrape the entire source of a remote url
 
 """Flow:
-
+    
     1. accept a command from command line
     2. set in action 'fetching' of html
     3. hand string of HTML to converter
     4. parse HTML using xml.sax (hopefully)
-    5. translate to JSON in accordance with fastFrag specifications 
+    5. translate to JSON in accordance with fastFrag specifications
         (css for class, element attributes for everything but id and css, including in attribute)
         type : (element.nodeNode)
         content : (content of child element (string for textnode, object or dictionary))
@@ -35,12 +33,14 @@ from optparse import OptionParser
 """
 
 class MyHTMLParser(HTMLParser):
-
+    
     def handle_starttag(self, tag, attrs):
         self.node_depth+=1
-        # print self.get_starttag_text()
-        frag = { 'type' : tag }
-        frag['attributes']={}
+        # fast frag assumes div, skip type for this element
+        if tag != "div":
+            frag = { 'type' : tag }
+        else:
+            frag = {}
         
         for key,value in attrs:
             if key == "id":
@@ -48,9 +48,11 @@ class MyHTMLParser(HTMLParser):
             elif key == "class":
                 frag["css"] = value
             elif key:
+                if not frag.get('attributes'):
+                    frag['attributes']={}
                 frag.get('attributes')[ key ] = value
-        
                 
+        
         if not self.fragList:
             self.fragList = frag
         else:
@@ -64,31 +66,38 @@ class MyHTMLParser(HTMLParser):
                     if type(content) == dict:
                         if content.get('content'):
                             content=content.get('content')
-                            continue
-                            
+                            continue # magic, forward to next element
+                        
                         if type(content) == dict:
                             content['content']=[frag]
                         else:
                             # print "appending frag %s" % frag
                             content.append( frag )
                         processer=False
-                            
+                    
                     elif type(content) == list:
                         if counter < self.node_depth:
-                            content = content[ len(content)-1 ]
+                            content = content[ len(content)-1 ].get('content') or content[ len(content)-1 ]
                         else:
                             processer=False
                             content.append(frag)
-
+            ## fix for non close tags... like image
+            if tag == "img" or tag == "input":
+                self.node_depth-=1
+    
     def handle_endtag(self, tag):
         # print self.fragList
         self.node_depth-=1
         #print "Encountered the end of a %s tag" % tag
-
+    
     
     def close(self):
         print json.dumps( self.fragList )
-        HTMLParser.close(self)
+        try:
+            HTMLParser.close(self)
+        except Exception,msg:
+            print "\n possible error: %s " % msg
+            pass
     
     def __init__(self):
         self.fragList=None
@@ -108,92 +117,70 @@ def fetch_and_scrape( remote_url ):
     try:
         json_data= json.loads( response.read() )
     except Exception,msg:
-        raise Usage( msg )
         return 2
     
     body_string=json_data.get("content")
-    parser= MyHTMLParser()
-    # print "starts with %s" % body_string
-    print "::JSON ready"
-    response = parser.feed( body_string )
-    parser.close()
+    _parse_string( body_string )
 
 def fetch_url( page_url ):
-    response = urllib2.urlopen( page_url )    
-    print response.read()
+    response = urllib2.urlopen( page_url )
+    html_string = response.read()
+    _parse_string( html_string )
 
 
+def _parse_string( html_string  ):
+    parser= MyHTMLParser()
+    # print "starts with %s" % body_string
+    print "--JSON ready: \n"
+    response = parser.feed( html_string )
+    parser.close()    
 
-
-
-
-
-
-### entry point    
-def handle_args( commandline_opts ):
-    print commandline_opts
-    for a,opt in commandline_opts:
-        if a == "-b":
-            print "fetch and scrape body remote url: " + opt
-            fetch_and_scrape( opt )
-            break
-        elif a == "-r":
-            print "check out" + opt
-            fetch_url( opt )
-        elif a == "-h":
-            print "not helpful"
-        # print opt
-        # print a
-        
+def handle_raw_string(  html_string  ):
+    if not html_string or html_string == "":
+        return
+    _parse_string( html_string )
     
-
-
-##
+def open_and_parse_file( filename ):
+    file_string=""
+    with open(filename, 'r') as f:
+        file_string = f.read()
+        f.close()
+    _parse_string( file_string )
+    
 
 
 if __name__ == '__main__':
-
-
+    
     parser = OptionParser()
-    parser.add_option("-b", dest="remote_url",
-                      help="Scrape 'html' body element structure (no text, only tags and attributes)", metavar="URL")
-                      
-    parser.add_option("-r", dest="remote_url", type="string", 
-                        help="scrape a url", metavar="URL")                      
+    # parser.add_option("-b", dest="remote_scrape_url",
+    #                   help="Scrape 'html' body element structure (no text, only tags and attributes)", metavar="URL")
+    
+    parser.add_option("-r", dest="remote_url", type="string",
+                        help="scrape a remote url", metavar="URL")
+    
+    parser.add_option("-f", dest="file_location", type="string",
+                        help="open file and read contents", metavar="FILE")
+    
+    parser.add_option("-s", dest="string_html", type="string",
+                        help="a raw string of HTML", metavar="STR")
     parser.add_option("-q", "--quiet",
                       action="store_false", dest="verbose", default=True,
                       help="don't print status messages to stdout")
-
-
-    ## (options, args) = 
+    
     options,args = parser.parse_args()
     
     
+    # if options.remote_scrape_url:
+    #     fetch_and_scrape( options.remote_url )
+    
     if options.remote_url:
-        fetch_and_scrape( options.remote_url )
+        fetch_url( options.remote_url )
+    
+    if options.string_html:
+        handle_raw_string( options.string_html )
+    
+    if options.file_location:
+        print "read a file @ %s" % options.file_location
+        open_and_parse_file( options.file_location )
     
     
-
-
-# ## Generic? sorta... keep working on it, define handle_args
-# class Usage(Exception):
-#     def __init__(self, msg):
-#         self.msg = msg
-# 
-# def main(argv=None):
-#     if argv is None:
-#         argv = sys.argv
-#     try:
-#         try:
-#             opts, args = getopt.getopt(argv[1:], "rb:h", ["help"])
-#         except getopt.error, msg:
-#              raise Usage(msg)
-#         # more code, unchanged
-#         handle_args( opts )
-#     except Usage, err:
-#         print >>sys.stderr, err.msg
-#         print >>sys.stderr, "for help use --help"
-#         return 2
-# 
-# if __name__ == "__main__":
-#     sys.exit(main())   
