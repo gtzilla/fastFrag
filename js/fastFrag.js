@@ -8,7 +8,7 @@
         create : function( params ) {
             return drawHTML(params);
         },
-        version : "1.0.2"
+        version : "1.0.3"
     
     };
     window.fastFrag = fastFrag;
@@ -68,7 +68,9 @@
                 txt_value = (o.content !== undefined) ? (o.content.toString() || "")  : "";
                 txt = d.createTextNode( txt_value );
             }
-            if(o.type !== "img") { el.appendChild( txt ); }
+            // fix for ie... 
+            if(o.type !== "img" && o.type !== 'input' 
+                && o.type !== "hr" && o.type !== "br" ) { el.appendChild( txt ); }
         }
         
         frag.appendChild(el);
