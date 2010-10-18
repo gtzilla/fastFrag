@@ -8,7 +8,7 @@
         create : function( params ) {
             return drawHTML(params);
         },
-        version : "1.0.1"
+        version : "1.0.2"
     
     };
     window.fastFrag = fastFrag;
@@ -37,7 +37,8 @@
         for(var k in attrs) { 
             // yuck
             if(k === "disabled" && !attrs[k]) { continue; }
-            el.setAttribute(k, _safe( attrs[k] ) ); 
+            el.setAttribute(k, _safe( attrs[k] ) );                 
+
         }
         return el;
     }
@@ -45,7 +46,7 @@
         var el_name, el;
         el_name = o.type || "div";
         el = _mke( el_name );
-        if(o.attributes) { _mke_attribute(el, o.attributes); }
+        if(o.attributes) { _mke_attribute( el, o.attributes); }
         el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
         return el;
     }
@@ -67,7 +68,7 @@
                 txt_value = (o.content !== undefined) ? (o.content.toString() || "")  : "";
                 txt = d.createTextNode( txt_value );
             }
-            el.appendChild( txt );
+            if(o.type !== "img") { el.appendChild( txt ); }
         }
         
         frag.appendChild(el);
