@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Fast Frag Conversion</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        
+        <style type="text/css" media="screen">
+
+            *{ padding:0; margin:0; }
+            h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
+                font-family:Arial, sans-serif;
+                font-size:13px;
+                font-weight:normal;
+                color:#333;
+            }
+            .hr {
+                clear:both;
+                float:none;
+            }
+            .hr hr {
+                display:none;
+            }
+            #top {
+                
+            }
+            #middle {
+                
+            }
+            #bottom {
+                
+            }
+        
+            body {
+                background:#3d3d3d;
+            }
+            #container {
+                width:700px;
+                margin:20px auto;
+
+            }
+            
+            #main_text_input {
+                width:600px;
+                height:300px;
+                border:1px solid #666;
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                border-radius: 20px;
+                padding:5px;
+                background:white;
+                
+                font-size:15px;
+                color:#000;
+                                
+                                
+            }
+            #middle {
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                border-radius: 20px;
+                padding:20px;                
+                background:#ccc;
+            }
+            #html_to_convert {
+                font-size:22px;
+                padding-bottom:8px;
+            }
+            .meta p {
+                padding:5px 100px 10px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+                
+                <div class="meta">
+                    
+                    <h1 id="html_to_convert">Convert HTML to fastFrag JSON</h1>
+                    <p>Convert HTML to <a href="http://github.com/gregory80/fastFrag">fastFrag</a> JSON structure, currently, text is stripped and only HTML elements and attributes are returned</p>                    
+                    
+                    
+                </div>
+
+                
+                <form action="" method="post" accept-charset="utf-8">
+                    
+                    <textarea id="main_text_input" name="html_string"></textarea>
+                    
+                    <div>
+                        <input type="submit" name="" value="Convert" id="">                        
+                    </div>
+
+                    {{ xsrf_form_html() }}
+                </form>
+
+
+                <div class="meta">
+                    <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>
+                </div>
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+            <script type="text/javascript" src="js/"></script>
+      
+    </body>
+</html>

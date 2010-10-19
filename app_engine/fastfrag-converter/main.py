@@ -22,18 +22,49 @@ import tornado.web
 import tornado.wsgi
 import unicodedata
 import wsgiref.handlers
+import logging
 
 # from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 import libs.html_converter
 
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
+class BaseHandler( tornado.web.RequestHandler  ):
+    
+    def process_html_string(self, html_string):
         parser = libs.html_converter.FastFragHTMLParser()
-        parser.feed('<div class="test"></div>')
+        parser.feed(html_string)
         string_out = parser.output_json()
-        self.write( string_out )
+        
+        return string_out
+        
+        
+
+class MainHandler(BaseHandler):
+    def get(self):
+        self.render("main.html")
+        
+    def post(self):
+        text_string = self.get_argument("html_string")
+        if not text_string:
+            self.render("main.html")
+            return
+        string_out=""
+        try:
+            string_out = self.process_html_string( text_string  )
+        except Exception,msg:
+            print msg
+        
+        self.write(string_out)
+        self.finish()
+        
+        
+        
+        
+class APIHandler(BaseHandler):
+    
+    def get(self):
+        pass
 
 
 
@@ -42,7 +73,7 @@ settings = {
     "blog_title": u"Tornado Blog",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     # "ui_modules": {"Entry": EntryModule},
-    "xsrf_cookies": True,
+    # "xsrf_cookies": True,
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
