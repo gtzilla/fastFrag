@@ -262,7 +262,7 @@ FAQ
 
 * Why this syntax?
 
-    It seemed simple and I wanted to avoid and possible conflicts or errors if the Object key is not quoted, for example 'class' is a keyword for some environments, css, is not.  I'm not married to it, any suggestions are welcome, please send me a note or file an issue: http://github.com/gregory80/fastFrag/issues
+    It seemed simple and I wanted to avoid any possible conflicts or errors if the Object key is not quoted, for example 'class' is a keyword for some environments, css, is not.  I'm not married to it, any suggestions are welcome, please send me a note or file an issue: <http://github.com/gregory80/fastFrag/issues>
     
     Though there are still some cases where this is unavoidable, the 'for=""' attribute on labels comes to mind, 'for' must be quoted. For example
     
