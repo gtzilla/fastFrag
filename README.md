@@ -2,7 +2,7 @@
 fastFrag
 =====
 
-A simple JS library for making HTML from JSON. 
+A simple JS library for making HTML from JSON. Include fastFrag.js and you're ready to use fastFrag.
 
 
 UNLICENSE
@@ -59,7 +59,12 @@ Complex / More Complete Options
 
 What is fastFrag?
 ----------
-A really, really simple JS helper library for making HTML (a document fragment) from JavaScript. See Usage for examples.
+
+An extremely simple **JS helper library** for making HTML (a document fragment) from JavaScript. 
+
+        var frag_results = fastFrag.create( { id="my_id" }  ); // return <div id="my_id"></div>
+        
+For more complete examples see Usage below, or [convert html now](http://fastfrag-converter.appspot.com/).
 
 
 Why do I want or need this?
@@ -74,6 +79,11 @@ When is this useful?
 ----------
 
 When you need to render / change the DOM [Document Object Model] from JavaScript.
+
+Do I need all this stuff?
+------------
+
+Nope, you only need [fastFrag.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js) or [fastFrag.min.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js) to use fastFrag. That's it. The remaining portion of the project comprises samples, tests, markdown extension, and app engine code for converting HTML to fastFrag JSON, [here](http://fastfrag-converter.appspot.com/). 
 
 Usage
 -----
