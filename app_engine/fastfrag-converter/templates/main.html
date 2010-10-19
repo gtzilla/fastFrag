@@ -12,72 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="awesome" />
         <meta name="description" content="" />
-        
-        <style type="text/css" media="screen">
-
-            *{ padding:0; margin:0; }
-            h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
-                font-family:Arial, sans-serif;
-                font-size:13px;
-                font-weight:normal;
-                color:#333;
-            }
-            .hr {
-                clear:both;
-                float:none;
-            }
-            .hr hr {
-                display:none;
-            }
-            #top {
-                
-            }
-            #middle {
-                
-            }
-            #bottom {
-                
-            }
-        
-            body {
-                background:#3d3d3d;
-            }
-            #container {
-                width:700px;
-                margin:20px auto;
-
-            }
-            
-            #main_text_input {
-                width:600px;
-                height:300px;
-                border:1px solid #666;
-                -webkit-border-radius: 20px;
-                -moz-border-radius: 20px;
-                border-radius: 20px;
-                padding:5px;
-                background:white;
-                
-                font-size:15px;
-                color:#000;
-                                
-                                
-            }
-            #middle {
-                -webkit-border-radius: 20px;
-                -moz-border-radius: 20px;
-                border-radius: 20px;
-                padding:20px;                
-                background:#ccc;
-            }
-            #html_to_convert {
-                font-size:22px;
-                padding-bottom:8px;
-            }
-            .meta p {
-                padding:5px 100px 10px 0px;
-            }
-        </style>
+        <link rel="stylesheet" href="/static/basic.css" type="text/css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
         <div id="container">
@@ -99,10 +34,11 @@
                 
                 <form action="" method="post" accept-charset="utf-8">
                     
-                    <textarea id="main_text_input" name="html_string"></textarea>
+                    <textarea placeholder="{{escape(placeholder)}}" id="main_text_input" name="html_string"></textarea>
                     
                     <div>
-                        <input type="submit" name="" value="Convert" id="">                        
+                        <input type="submit" name="" value="Convert" id="">
+                        <input type="submit" name="sample_test" value="Sample Text" id="sample_test">                                                
                     </div>
 
                     {{ xsrf_form_html() }}
@@ -110,7 +46,7 @@
 
 
                 <div class="meta">
-                    <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>
+                    <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/raw/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/raw/master/js/fastFrag.min.js">here</a>
                 </div>
 
             </div> <!-- END #middle -->
@@ -120,9 +56,7 @@
             </div> <!-- end #bottom -->
             
         </div> <!-- end #container -->
-    
-        
-            <script type="text/javascript" src="js/"></script>
+
       
     </body>
 </html>

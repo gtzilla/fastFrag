@@ -31,6 +31,10 @@ import libs.html_converter
 
 class BaseHandler( tornado.web.RequestHandler  ):
     
+    @property
+    def sample_html(self):
+        return """<div id="my_id"><a href="http://example.com" class="my_class">text stripped</a></div>"""
+    
     def process_html_string(self, html_string):
         parser = libs.html_converter.FastFragHTMLParser()
         parser.feed(html_string)
@@ -38,16 +42,34 @@ class BaseHandler( tornado.web.RequestHandler  ):
         
         return string_out
         
+    def output_page(self, frag_string):
+        
+        
+        self.render("output.html", data_output=frag_string)
+
         
 
 class MainHandler(BaseHandler):
+    
+    
+    
     def get(self):
-        self.render("main.html")
+        self.render("main.html", placeholder=self.sample_html)
         
     def post(self):
-        text_string = self.get_argument("html_string")
+        text_string = self.get_argument("html_string", None)
+        sample_test = self.get_argument("sample_test", None)        
+        if sample_test:
+            string_out=""
+            try:
+                string_out = self.process_html_string( self.sample_html  )
+            except:
+                pass
+            self.output_page( string_out )
+            return
+        
         if not text_string:
-            self.render("main.html")
+            self.render("main.html", placeholder=self.sample_html)
             return
         string_out=""
         try:
@@ -55,8 +77,7 @@ class MainHandler(BaseHandler):
         except Exception,msg:
             print msg
         
-        self.write(string_out)
-        self.finish()
+        self.output_page( string_out )
         
         
         

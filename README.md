@@ -2,7 +2,8 @@
 fastFrag
 =====
 
-A simple JS library for making HTML from JSON, see below for samples and usage. Comparisons and complete examples available in the project
+A simple JS library for making HTML from JSON. 
+
 
 UNLICENSE
 -----
@@ -12,38 +13,22 @@ UNLICENSE
 
 This is free and unencumbered software released into the public domain.
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+see complete UNLICENSE Information below, or at [unlicense.org](http://unlicense.org/) 
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-For more information, please refer to http://unlicense.org/
 
 Overview
 -----
 
-Who, what when where why of fastFrag
+Who, what when where why of fastFrag.
+
+You give fastFrag JSON and it gives you back HTML (a Docment Fragment) that is ready to be added to the DOM.
+
+Convert your existing HTML to fastFrag JSON in less than a second visit [fastFrag converter](http://fastfrag-converter.appspot.com/), paste in HTML and get fastFrag JSON back.
 
 How does it work
 ----------
 
-You give fastFrag JSON and it gives you back HTML (a Docment Fragment) that is ready to be added to the DOM.
+By using existing, stable DOM methods, fastFrag quickly converts JSON to HTML a Docment Fragment), handling all escaping concerns, making it both safe and fast.
 
 Syntax
 ----------
@@ -212,7 +197,10 @@ FAQ
 
 * I already wrote my HTML, converting it seems annoying, got anything to make it less so?
     
-    Absolutely, in the python folder, there is a script that takes a variety of formats and returns fastFrag JSON, ready to go
+    Absolutely, you have two options, first: visit [fastFrag converter](http://fastfrag-converter.appspot.com/), paste in HTML and get fastFrag JSON back.
+    
+    
+    Second, in the python folder, there is a script that takes a variety of formats and returns fastFrag JSON, ready to go
     
         python converter.py -s '<div class="myClass"><a href="#link"><img src="image/image.src" border="0" /></a></div>'
         
@@ -299,4 +287,39 @@ fastFrag minimizes manipulation of the DOM api, which is generally considered to
 or, better yet, just give it a list of elements and skip the 'wrapper'
 
     document.body.appendChild( fastFrag.create([....]) );
+    
+    
+
+UNLICENSE
+-----
+
+
+[unlicense](http://unlicense.org/) 
+
+This is free and unencumbered software released into the public domain.
+
+see complete UNLICENSE Information below
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to http://unlicense.org/
 
