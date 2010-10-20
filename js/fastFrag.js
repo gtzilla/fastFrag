@@ -8,7 +8,7 @@
         create : function( params ) {
             return drawHTML(params);
         },
-        version : "1.0.3"
+        version : "1.0.4"
     
     };
     window.fastFrag = fastFrag;
@@ -46,7 +46,7 @@
         var el_name, el;
         el_name = o.type || "div";
         el = _mke( el_name );
-        if(o.attributes) { _mke_attribute( el, o.attributes); }
+        if(o.attributes || o.attr) { _mke_attribute( el, o.attributes || o.attr ); }
         el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
         return el;
     }
