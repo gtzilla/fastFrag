@@ -31,6 +31,9 @@ class FastFragHTMLParser(HTMLParser):
     def handle_startendtag(self, tag, attrs):
 
         frag = self._create_basic_frag( tag, attrs )
+
+        self._get_frag_location( frag, self.fragList )        
+
         
         logging.info("start_endtag %s and  %s" % (tag, frag) )        
         ## decrement self close
@@ -65,43 +68,50 @@ class FastFragHTMLParser(HTMLParser):
         self.counter=0
         self._last_elem=None
         def lookup( frag_el, start_el ):
-            logging.info("goingdeep  to %s and %s depth %d" %  ( frag_el, start_el, self.node_depth  )  )
+            
             self.counter+=1
             if self.counter == self.node_depth:
-                logging.info("depth math %s" % frag_el)
+                
+                if self._last_elem:
+                    try:
+                        content = self._last_elem.get('content')
+                    except:
+                        content = self._last_elem
+                    if type(content) == dict:
+                        if start_el:
+                            self._last_elem['content'] = [start_el, frag_el]
+                        else:
+                            if type( self._last_elem ) == dict:
+                                self._last_elem['content'] = [frag_el]
+                            elif type(self._last_elem) == list:
+                                self._last_elem.append(frag_el)
+                            else:
+                                logging.warn("Error trying to add to last ele %s" % frag_el )
+                    elif type(content) == list:
+                        if type( self._last_elem ) == dict:
+                            self._last_elem['content'] = [frag_el]
+                        elif type(self._last_elem) == list:
+                            self._last_elem.append(frag_el)                        
+
+                else:
+                    if type(self.fragList) == dict:
+                        self.fragList=[start_el,frag_el]
+                    elif type(self.fragList) == list:
+                        self.fragList.append(frag_el)
+                
             else:
-                try:
+                if type(start_el) == dict:
                     next_el = start_el.get("content")
-                except Exception, msg:
-                    logging.info("hehhe %s" % msg )
-                    pass
+                elif type(start_el) == list:
+                    next_el= start_el[ len(start_el)-1 ]
+                else:
+                    next_el=start_el
+                    logging.warn("start el is %s" % start_el)
+
                 self._last_elem=start_el
                 lookup( frag_el, next_el)
-            # #logging.info(" elem type %s for frag %s" % (type(start_el), frag_el ) )
-            # next_el = start_el and start_el.get('content')
-            # #logging.info("frag %s  start %s next %s" % ( frag_el, start_el, next_el ) )
-            # if self.node_depth < self.counter:
-            #     logging.info("goingdeep  to %s and %s next el %s" %  ( frag_el, start_el, next_el  )  )
-            #     self.counter+=1                 
-            #     lookup( frag_el, next_el )
-            # else:
-            #     if start_el and self.node_depth == self.counter:
-            #         logging.info("start...")
-            #         start_el['content'] = frag_el
-            #     elif next_el:
-            #         if type(next_el) == dict:
-            #             start_el['content'] = [next_el, frag_el]
-            #         elif type(next_el) == list:
-            #             logging.info("its a list now")
-            #             next_el.append(frag_el)
-            # 
-            #             
-            #         logging.info("weird case to %s and %s next el %s" % ( frag_el, start_el, next_el  ) )
-            # 
-            #     logging.info("all to %s and %s next el %s" % ( frag_el, start_el, next_el  ) )
-            # 
-            # 
-            # return start_el
+            
+            return start_el
         
         lookup( frag, start_location )
 
@@ -112,7 +122,9 @@ class FastFragHTMLParser(HTMLParser):
         #print "Encountered the end of a %s tag" % tag
 
     def output_json(self):
-        return json.dumps( self.fragList, sort_keys=True, indent=4 )
+        out_results = json.dumps( self.fragList, sort_keys=True, indent=4 )
+        logging.info(out_results)
+        return out_results
     
     def __init__(self):
         self.fragList=None

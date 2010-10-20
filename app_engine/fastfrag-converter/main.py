@@ -75,7 +75,7 @@ class MainHandler(BaseHandler):
         try:
             string_out = self.process_html_string( text_string  )
         except Exception,msg:
-            print msg
+            logging.exception("error %s" % msg )
         
         self.output_page( string_out )
         
