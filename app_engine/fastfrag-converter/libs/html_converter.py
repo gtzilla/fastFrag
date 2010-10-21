@@ -42,6 +42,8 @@ class FastFragHTMLParser(HTMLParser):
     def handle_data(self,data):
         if data and data.strip() != "":
             logging.info("is this the text? %s for frag %s" % (data, self.active_frag ) )
+            #self._get_frag_location( { 'text' : data }, self.fragList )            
+            self.active_frag['content'] = { 'text' : data }
             #self.active_frag['content'] = "%s" % data
     
     def handle_starttag(self, tag, attrs):
@@ -119,6 +121,9 @@ class FastFragHTMLParser(HTMLParser):
     def handle_endtag(self, tag):
         # print self.fragList
         self.node_depth-=1
+        ## this is probably where I need to adjust the data constucts. 
+        ## Like if I find a content that is a list with one item, change that shit back
+        
         #print "Encountered the end of a %s tag" % tag
 
     def output_json(self):
