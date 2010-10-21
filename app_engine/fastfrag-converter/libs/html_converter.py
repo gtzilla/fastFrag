@@ -63,6 +63,17 @@ class FastFragHTMLParser(HTMLParser):
             self._get_frag_location( frag, self.fragList )
         # else:
         #     self._get_frag_location( frag, self.fragList )
+    
+    def _frag_appender(self, frag=None):
+        if type( frag ) == dict:
+            pass
+        elif type( frag ) == list:
+            pass
+        elif type(frag) == str:
+            pass
+        else:
+            logging.warn("fail, not a dict or list or str... is this where I make one?")
+        
             
     def _get_frag_location(self, frag, start_location):
         #logging.info("thing type is %s" % type(start_location) )
@@ -77,26 +88,32 @@ class FastFragHTMLParser(HTMLParser):
                 if self._last_elem:
                     try:
                         content = self._last_elem.get('content')
-                    except:
+                    except Exception,msg:
+                        logging.warn("excption, the last element has issue: %s" % msg )
+                        ## this excption is most likely because 
+                        ##_list_elem is actuall a LIST object, which has no method get
+                        ## looks like I am dealing with that case down if elif type(content) == list
                         content = self._last_elem
-                    if type(content) == dict:
-                        if start_el:
-                            self._last_elem['content'] = [start_el, frag_el]
-                        else:
-                            if type( content ) == dict:
-                                self._last_elem['content'] = frag_el
-                            elif type( content ) == list:
-                                self._last_elem.append(frag_el)
-                            else:
-                                logging.warn("Error trying to add to last ele %s" % frag_el )
-                    elif type(content) == list:
-                        if type( self._last_elem ) == dict:
-                            self._last_elem['content'] = [start_el, frag_el]
-                        elif type(self._last_elem) == list:
-                            self._last_elem.append(frag_el)                        
+                        self._last_elem.append( frag_el )
+                        
+                    if type(content) == dict and start_el:
+                        self._last_elem['content'] = [start_el, frag_el]
+                    elif type( content ) == dict:
+                        self._last_elem['content'] = frag_el
+                    elif type( content ) == list:
+                        logging.info("content is list, last elem is dict. List %s and last %s and frag is %s" % (content, self._last_elem, frag_el))
+                        content.append(frag_el)
+                    else:
+                        logging.warn("Error trying to add to last ele %s" % frag_el )
+                    # elif type(content) == list:
+                    #     if type( self._last_elem ) == dict:
+                    #         self._last_elem['content'] = [start_el, frag_el]
+                    #     elif type( self._last_elem ) == list:
+                    #         self._last_elem.append(frag_el)                        
 
                 else:
                     if type(self.fragList) == dict:
+                        logging.info("changing the original fraglist, alter dict --> list %s" % frag_el)
                         self.fragList=[start_el,frag_el]
                     elif type(self.fragList) == list:
                         self.fragList.append(frag_el)
