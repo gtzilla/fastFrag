@@ -83,15 +83,15 @@ class FastFragHTMLParser(HTMLParser):
                         if start_el:
                             self._last_elem['content'] = [start_el, frag_el]
                         else:
-                            if type( self._last_elem ) == dict:
-                                self._last_elem['content'] = [frag_el]
-                            elif type(self._last_elem) == list:
+                            if type( content ) == dict:
+                                self._last_elem['content'] = frag_el
+                            elif type( content ) == list:
                                 self._last_elem.append(frag_el)
                             else:
                                 logging.warn("Error trying to add to last ele %s" % frag_el )
                     elif type(content) == list:
                         if type( self._last_elem ) == dict:
-                            self._last_elem['content'] = [frag_el]
+                            self._last_elem['content'] = [start_el, frag_el]
                         elif type(self._last_elem) == list:
                             self._last_elem.append(frag_el)                        
 
