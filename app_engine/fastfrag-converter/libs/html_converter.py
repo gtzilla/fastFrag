@@ -81,7 +81,7 @@ class FastFragHTMLParser(HTMLParser):
     def _get_frag_location(self, frag, start_location):
         #logging.info("thing type is %s" % type(start_location) )
 
-        self.counter=-1
+        self.counter=0
         self._last_elem=None
         def lookup( frag_el, start_el ):
             
