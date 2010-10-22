@@ -9,6 +9,7 @@ except:
 class FastFragHTMLParser(HTMLParser):
     
     
+    
     def _create_basic_frag(self, tag, attrs):
         # fast frag assumes div, skip type for this element
         if tag != "div":
