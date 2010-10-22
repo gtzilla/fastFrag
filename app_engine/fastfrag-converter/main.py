@@ -87,7 +87,19 @@ class APIHandler(BaseHandler):
     def get(self):
         pass
 
-
+class FragHandler(BaseHandler):
+    
+    def get(self, filename=None):
+        if not filename:
+            raise tornado.web.HTTPError(404)
+            return
+            
+        try:
+            self.render("rad/%s.html" % filename)
+        except Exception,msg:
+            logging.warn("error rendering template %s" % msg)
+            raise tornado.web.HTTPError(404)
+            
 
 ##
 settings = {
@@ -98,7 +110,7 @@ settings = {
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
-    # (r"/archive", ArchiveHandler),
+    (r"/rad/(.*)", FragHandler),
     # (r"/feed", FeedHandler),
     # (r"/entry/([^/]+)", EntryHandler),
     # (r"/compose", ComposeHandler),

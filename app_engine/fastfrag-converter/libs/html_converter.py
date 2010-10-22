@@ -22,19 +22,16 @@ class FastFragHTMLParser(HTMLParser):
             elif key == "class":
                 frag["css"] = value
             elif key:
-                if not frag.get('attributes'):
-                    frag['attributes']={}
-                frag.get('attributes')[ key ] = value
+                if not frag.get('attrs'):
+                    frag['attrs']={}
+                frag.get('attrs')[ key ] = value
         
         return frag        
     
     def handle_startendtag(self, tag, attrs):
 
         frag = self._create_basic_frag( tag, attrs )
-
         self._get_frag_location( frag, self.fragList )        
-
-        
         logging.info("start_endtag %s and  %s" % (tag, frag) )        
         ## decrement self close
         ## no action for sel closed?
@@ -48,11 +45,17 @@ class FastFragHTMLParser(HTMLParser):
     
     def handle_starttag(self, tag, attrs):
         
-        ## notes, I need a switch for possible self closed tags like images
-        ## properly closed, causes an error.
-        ## add a flag to check if this tag will be closed.... somehow...
+        """Note: The method handle_startendtag 
+        will handle any properly formatted HTML, otherwise, the tag will 
+        end up here, adjust as need"""
         
-        self.node_depth+=1
+        if tag == "img" or tag=="input" or tag == "br":
+            logging.info("shit HTML headed in")             
+            frag = self._create_basic_frag( tag, attrs )
+            self._get_frag_location( frag, self.fragList )
+            return            
+
+        self.node_depth+=1    
         # fast frag assumes div, skip type for this element
         frag = self._create_basic_frag( tag, attrs ) 
         self.active_frag=frag       
@@ -61,9 +64,8 @@ class FastFragHTMLParser(HTMLParser):
             self.fragList['content'] = {}
         else:    
             self._get_frag_location( frag, self.fragList )
-        # else:
-        #     self._get_frag_location( frag, self.fragList )
-    
+
+        
     def _frag_appender(self, frag=None):
         if type( frag ) == dict:
             pass
@@ -78,13 +80,12 @@ class FastFragHTMLParser(HTMLParser):
     def _get_frag_location(self, frag, start_location):
         #logging.info("thing type is %s" % type(start_location) )
 
-        self.counter=0
+        self.counter=-1
         self._last_elem=None
         def lookup( frag_el, start_el ):
             
             self.counter+=1
             if self.counter == self.node_depth:
-                
                 if self._last_elem:
                     try:
                         content = self._last_elem.get('content')
@@ -104,7 +105,7 @@ class FastFragHTMLParser(HTMLParser):
                         logging.info("content is list, last elem is dict. List %s and last %s and frag is %s" % (content, self._last_elem, frag_el))
                         content.append(frag_el)
                     else:
-                        logging.warn("Error trying to add to last ele %s" % frag_el )
+                        logging.warn("Error trying to add to last ele %s and type of content is %s" % (frag_el, type( content ) ) )
                     # elif type(content) == list:
                     #     if type( self._last_elem ) == dict:
                     #         self._last_elem['content'] = [start_el, frag_el]
@@ -119,15 +120,32 @@ class FastFragHTMLParser(HTMLParser):
                         self.fragList.append(frag_el)
                 
             else:
+                logging.info("location %s and last is %s" % (start_el, self._last_elem ))
                 if type(start_el) == dict:
-                    next_el = start_el.get("content")
+                    self._last_elem=start_el
+                    if not start_el.get("content"):
+                        start_el['content'] = {}                        
+                    
+                    next_el = start_el.get("content")             
+
                 elif type(start_el) == list:
-                    next_el= start_el[ len(start_el)-1 ]
+                    place_holder_el = start_el[ len(start_el)-1 ]
+                    
+                    logging.info("digging and found a list... want to use this %s and add %s" % (place_holder_el, frag_el))
+                    
+                    if not place_holder_el.get('content'):
+                        place_holder_el['content'] = {}                    
+                        self._last_elem=start_el
+                        next_el=place_holder_el
+                    else:
+                        self._last_elem=place_holder_el
+                        next_el = place_holder_el.get('content')
                 else:
                     next_el=start_el
-                    logging.warn("start el is %s" % start_el)
+                    self._last_elem=start_el
+                    logging.warn("start el is %s |w00t| %s |and umm| %s" % (start_el, next_el, frag_el) )
 
-                self._last_elem=start_el
+
                 lookup( frag_el, next_el)
             
             return start_el

@@ -9,3 +9,4 @@ handlers:
     
 - url: .*
   script: main.py
+   

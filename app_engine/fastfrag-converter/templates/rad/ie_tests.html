@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+        <script type="text/javascript" charset="utf-8">
+            
+        (function(){
+            /*
+                    fastFrag
+                        Turn JSON into HTML, http://github.com/gregory80/fastFrag
+            */
+
+            var fastFrag = {
+                create : function( params ) {
+                    return drawHTML(params);
+                },
+                version : "1.0.4"
+
+            };
+            window.fastFrag = fastFrag;
+
+            var d = document;
+
+            function drawHTML( params ) {
+                var frag = d.createDocumentFragment(), k, el;
+                if(params && params.length === undefined) {
+                    el = _singleNode( params );
+                    frag.appendChild( el );
+                } else {
+                    for(k in params) {
+                        el = _singleNode( params[k] );
+                        frag.appendChild( el );
+                    }
+                }
+                return frag;
+            }
+
+            function _mke(elem) {
+                return document.createElement( elem );
+            }
+            function _mke_attribute( el, attrs ) {
+                var safe_value;
+                for(var k in attrs) { 
+                    // yuck
+                    if(k === "disabled" && !attrs[k]) { continue; }
+                    el.setAttribute(k, _safe( attrs[k] ) );                 
+
+                }
+                return el;
+            }
+            function _make_element( o ) {
+                var el_name, el;
+                el_name = o.type || "div";
+                el = _mke( el_name );
+                if(o.attributes || o.attr || o.attrs) { _mke_attribute( el, o.attributes || o.attr  || o.attrs ); }
+                el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
+                return el;
+            }
+            function _safe( string ) {
+                return (d.createTextNode(string).nodeValue).toString();  // put in a text node, then grab it
+            }
+            function _singleNode( o ) {
+                var frag = d.createDocumentFragment(), el, content_type = typeof o.content, txt, txt_value;
+                if( o.text !== undefined ) {
+                    el = d.createTextNode( o.text || "" );
+                } else {
+                    el = _make_element( o );
+                    txt=null;
+                    if( content_type === "object") {
+                        txt = drawHTML( o.content );
+                    } else if(content_type === "string") {
+                        txt = d.createTextNode( o.content );
+                    } else {
+                        txt_value = (o.content !== undefined) ? (o.content.toString() || "")  : "";
+                        txt = d.createTextNode( txt_value );
+                    }
+                    // fix for ie... 
+                    if(o.type !== "img" && o.type !== 'input' 
+                        && o.type !== "hr" && o.type !== "br" ) { el.appendChild( txt ); }
+                }
+
+                frag.appendChild(el);
+                return frag;
+            }
+        })();            
+            
+            
+            
+        </script>
+        
+        <script type="text/javascript" charset="utf-8">
+        var structure_items = [];
+        
+        for(var i=0; i<100; i++){
+            
+            structure_items.push({
+                
+                content : [{
+                    type : "a",
+                    attrs : {
+                        href : "http://party.com:8082/",
+                        title : "neato " + i
+                    },
+                    content : {
+                        type : "img",
+                        attr: {
+                            src : "http://www.bondagesurfer.com/Games/yumi-rape-sex.jpg"                            
+                        }
+
+                    }
+                },{
+                    content : "count is " + i
+                }]
+                
+            })
+            
+        }
+        
+        
+        
+        
+        var structure = [{
+            type : "h1",
+            content : "Hello Fast Frag"
+        },{
+            type :"p",
+            content : "Welcome to the more complex example of fastFrag"
+        },{
+            css : "contentsContainer",
+            content : [{
+                type : "h3",
+                content : "A List of Simpsons quotes"
+            },{
+                type : "ul",
+                content : structure_items
+            },{
+                content : {
+                    type : "a",
+                    css : "simpsonslink",
+                    content : "The Complete List",
+                    attr : {
+                        href : "http://blogzarro.com/2007/07/100-greatest-simpsons-quotes/",
+                        target : 'new'
+                    }                            
+                }
+            }]
+        },{
+            id : "footer",
+            content : [{
+                type : "form",
+                content : [{
+                    type : "input",
+                    id : "value_1",
+                    attr : {
+                        type : "checkbox",
+                        name : "value_1",
+                        value : "yes",
+                        checked : true
+                        
+                    }
+                },{
+                    type : "label",
+                    content : "Fast?",
+                    attr : {
+                        'for' : 'value_1' 
+                    }
+                }]
+            }]
+        }]            
+            
+        document.getElementById("middle").appendChild(  fastFrag.create( structure )   )
+            
+        </script>
+      
+    </body>
+</html>

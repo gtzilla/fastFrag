@@ -48,12 +48,18 @@ Complex / More Complete Options
         id : "the_elem_id",              // optional
         type : "span",                  // optional: any html element, defaults to DIV
         content : "the inner HTML part" // optional, string, object, boolean, array accepted (create nested structures)
-        attributes : {
+        attr : {
             rel : "nofollow",
             made_up : "some_attributevalue"
         },                              // attributes for the element, optional
         text : "a string"              // optional, creates a text only node. All other attributes ignored, see usage
     }
+
+Note: Starting in version 1.0.5 the following can be used for attributes, attr and attrs for brevity
+
+    attributes : { .. }
+    attr : { .. } 
+    attrs : { .. }
 
 
 
@@ -133,6 +139,13 @@ Get more complex with with nested elements:
             content : "child two"
         }]
     })
+    
+Note: Starting in version 1.0.5 the following can be used for attributes, attr and attrs for brevity
+
+    attributes : { .. }
+    attr : { .. } 
+    attrs : { .. }
+    
 
 // returns Document Fragment
 
@@ -332,4 +345,17 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to http://unlicense.org/
+
+
+Changelog
+-------
+
+
+1.0.5
+
+Note: Starting in version 1.0.5 the following can be used for attributes, attr or attrs for brevity. A mix of any possible, future versions may deprecate 'attributes' in light of compact syntax.
+
+    attributes : { .. }
+    attr : { .. } 
+    attrs : { .. }
 
