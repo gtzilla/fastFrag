@@ -51,9 +51,11 @@ class FastFragHTMLParser(HTMLParser):
         end up here, adjust as need"""
         
         if tag == "img" or tag=="input" or tag == "br":
-            logging.info("shit HTML headed in")             
+            logging.info("shit HTML headed in")
+            self.node_depth+=1 
             frag = self._create_basic_frag( tag, attrs )
             self._get_frag_location( frag, self.fragList )
+            self.node_depth-=1             
             return            
 
         self.node_depth+=1    
@@ -139,6 +141,7 @@ class FastFragHTMLParser(HTMLParser):
                         self._last_elem=start_el
                         next_el=place_holder_el
                     else:
+                        logging.info("no content element fall throw, contine crawl.. %s" % place_holder_el )
                         self._last_elem=place_holder_el
                         next_el = place_holder_el.get('content')
                 else:
