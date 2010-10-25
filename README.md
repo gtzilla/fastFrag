@@ -132,7 +132,7 @@ Get more complex with with nested elements:
         content : [{
             type : "a"
             content : "child one",
-            attributes : {
+            attrs : {
                 href : "http://whatever.com"
             }
         }, {
@@ -140,13 +140,6 @@ Get more complex with with nested elements:
         }]
     })
     
-Note: Starting in version 1.0.5 the following can be used for attributes, attr and attrs for brevity
-
-    attributes : { .. }
-    attr : { .. } 
-    attrs : { .. }
-    
-
 // returns Document Fragment
 
     <div class="a_class_name">
@@ -154,6 +147,12 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
         <div>child two</div>
     </div>
     
+    
+Note: Starting in version 1.0.5 the following can be used for attributes, attr and attrs for brevity
+
+    attributes : { .. }
+    attr : { .. } 
+    attrs : { .. }    
     
     
 // create the below html with fastFrag
@@ -169,7 +168,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
         content : [{
             type : "a",
             content : "Fast Frag Repos"
-            attributes : {
+            attrs : {
                 href : "http://github.com/gregory80/fastFrag"
             }
         },{
@@ -177,7 +176,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
         },{
             type : "a",
             content : "link two"
-            attributes : {
+            attrs : {
                 href : "#"
             }
         }]
@@ -203,16 +202,28 @@ I personally found myself needing to render HTML from JavaScript. Over the years
     
         jQuery("#someId").html('<div class="myClass"><div><ul><li><a href="">foo</a></li><li><a href="">bar</a></li></div></div>')
     
-That's hard to read, difficult to maintain is basically entirely specific to the project.
+That's hard to read, difficult to maintain is basically entirely specific to the project. Recovering that string of 'text' would provide very little value.
 
-Since I like simple, easy to understand things. I wrote fastFrag in a few hours (weeks of testing). There are definitely other libraries out there, most have significantly more options or required some server side aspect to 'prep' the data and template. Since none of these did what I needed, I wrote this. A purely client-side JavaScript template powered by JSON and returning valid Document Fragments for DOM insertion. 
+Since I like simple, easy to understand things. I wrote fastFrag in a few hours (weeks of testing). There are definitely other libraries out there, most have significantly more options or required some server side aspect to *prepare* the data and template. Since none of the existing options did what I needed, I wrote this. A purely client-side JavaScript template powered by JSON and returning valid Document Fragments for DOM insertion. 
 
-Some Stats
+Some Stats, Is it actually fast?
 --------------
 
-Testing for innerHTML method on sample_inner_html_complex.html showed 5ms for layout, 5ms for paint
+Testing for innerHTML method on sample_inner_html_complex.html showed:
 
-fastFrag shows 4ms for layout, 1ms for paint. Graphs and data to come, you can run your own tests by loading the HTML files found in samples/ folder
+    5ms for layout, 5ms for paint
+
+fastFrag showed:
+
+    4ms for layout, 1ms for paint. 
+
+Graphs and data to come, you can run your own tests by loading the HTML files found in samples/ folder. 
+
+I am highly skeptical that any JS template library would be faster than a simple string and inner HTML across the variety of browsers on the market: Chrome, Safari Internet Explorer. 
+
+However, it is impossible to deny the expense incurred to escape data when using inner HTML methods directly, or risk possible serious attacks to your website if you accept any user-content. When comparing both the speed of inner HTML and it's absolute need for regular expressions to attempt and catch anything *dangerous*, with fastFrag, fastFrag has so far demonstrated itself to be faster, but again graphs to come as soon as possible. If you have found otherwise, please tell us about it here, <http://github.com/gregory80/fastFrag/issues>
+
+ 
 
 
 FAQ
@@ -358,4 +369,14 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr o
     attributes : { .. }
     attr : { .. } 
     attrs : { .. }
+    
+    
+Who's Using It?
+---------
+
+Currently, this project is limited to a handful of projects where I have been directly involved to some degree, for instance the bit.ly Chrome extension and fic.ly writes like as well as several projects I have yet to make public. See a list of my open projects [here on github](http://github.com/gregory80)
+
+If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastFrag/issues)! We will list your project and a link to the project homepage here. As well as a brief description, <fastfrag.org> has also been acquired and will feature people using the template. 
+
+
 
