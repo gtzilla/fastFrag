@@ -212,7 +212,7 @@ Some Stats
 
 Testing for innerHTML method on sample_inner_html_complex.html showed 5ms for layout, 5ms for paint
 
-fastFrag shows 4ms for layout, 1ms for paint. For graphs and data to come, you can run your own tests by loading the HTML files found in samples/
+fastFrag shows 4ms for layout, 1ms for paint. Graphs and data to come, you can run your own tests by loading the HTML files found in samples/ folder
 
 
 FAQ
@@ -353,7 +353,7 @@ Changelog
 
 1.0.5
 
-Note: Starting in version 1.0.5 the following can be used for attributes, attr or attrs for brevity. A mix of any possible, future versions may deprecate 'attributes' in light of compact syntax.
+Note: Starting in version 1.0.5 the following can be used for attributes, attr or attrs for brevity. A mix of any possible of the below is possible. In other words, it's fully backward compatible, future versions may deprecate the identifier property 'attributes' in favor of a more compact syntax.
 
     attributes : { .. }
     attr : { .. } 
