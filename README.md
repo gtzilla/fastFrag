@@ -68,7 +68,7 @@ What is fastFrag?
 
 An extremely simple **JS helper library** for making HTML (a document fragment) from JavaScript. 
 
-        var frag_results = fastFrag.create( { id="my_id" }  ); // return <div id="my_id"></div>
+        var frag_results = fastFrag.create( { id : "my_id" }  ); // return <div id="my_id"></div>
         
 For more complete examples see Usage below, or [convert html now](http://fastfrag-converter.appspot.com/).
 
