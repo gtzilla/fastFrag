@@ -34,3 +34,18 @@ One level conversions appear to be working okay:
     <div class="songVOListArtist">Das Racist</div><div class="songVOListAlbum">Sit Down, Man</div>
 </div>
 <div class="clear"></div>    
+
+
+
+
+More Tests:
+
+
+<div class="level1">
+    <div class="someitem"></div>
+    <div id="level2">
+        <a href="#alink"><img src="example.jpg" width="35" height="35" ></a>
+        <div class="mess_around">just some mess around to mess with this</div>
+    </div>
+    <div class="same_as_level2">whatvet text here</div>
+</div>

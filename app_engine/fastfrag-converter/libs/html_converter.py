@@ -137,9 +137,10 @@ class FastFragHTMLParser(HTMLParser):
                     logging.info("digging and found a list... want to use this %s and add %s" % (place_holder_el, frag_el))
                     
                     if not place_holder_el.get('content'):
-                        place_holder_el['content'] = {}                    
-                        self._last_elem=start_el
-                        next_el=place_holder_el
+                        place_holder_el['content'] = {}
+                        ## fuck around here, when no content exists                    
+                        self._last_elem=place_holder_el
+                        next_el=place_holder_el.get('content')
                     else:
                         logging.info("no content element fall throw, contine crawl.. %s" % place_holder_el )
                         self._last_elem=place_holder_el
