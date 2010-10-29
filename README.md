@@ -361,6 +361,9 @@ For more information, please refer to http://unlicense.org/
 Changelog
 -------
 
+1.1
+JavaScript change: move to try/catch based sub node append to handle IE errors regarding appending nodes to IMG, INPUT, BR, HR or other 'self' closed tags via the DOM.
+
 
 1.0.5
 
