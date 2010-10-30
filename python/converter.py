@@ -65,7 +65,7 @@ def _parse_string( html_string  ):
     # print "starts with %s" % body_string
     print "--JSON ready: \n"
     response = parser.feed( html_string )
-    print parser.output_json()
+    print parser.output_json_string()
 
 def handle_raw_string(  html_string  ):
     if not html_string or html_string == "":

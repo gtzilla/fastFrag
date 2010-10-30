@@ -13,16 +13,25 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
 .hr hr {
     display:none;
 }
-#top {
-    
+#top_test {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding:20px;                
+    background:#ccc;
+    margin-bottom:25px;    
 }
-#middle {
-    
+#middle, .bottom_redisplay {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding:20px;                
+    background:#ccc;  
+    margin-bottom:25px;  
 }
 #bottom {
-    
+    margin-bottom:80px;
 }
-
 .pretty_print_box {
     float:right;
     padding-right:15px;
@@ -57,13 +66,7 @@ body {
     font-size:16px;
     margin-bottom:6px;
 }
-#middle {
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    padding:20px;                
-    background:#ccc;
-}
+
 #html_to_convert {
     font-size:22px;
     padding-bottom:8px;

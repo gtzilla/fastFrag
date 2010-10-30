@@ -44,12 +44,13 @@
                             <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{data_output}}</textarea>                    
                         </div>
                         <div>
-                            <input type="submit" name="test_frag" value="Test Frag" id="test_frag">
+                            <input type="submit" class="converstion_button" name="test_frag" value="Test JSON frag" id="test_frag">
                         </div>
+                        {{ xsrf_form_html() }}
                     </form>
 
                 </div>
-                
+
 
                 <div class="meta">
                     <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js">here</a>

@@ -37,34 +37,38 @@ class BaseHandler( tornado.web.RequestHandler  ):
     
     @property
     def sample_html(self):
-        return """<div id="my_id"><a href="http://example.com" class="my_class">text stripped</a></div>"""
+        return """<div id="my_id" class="my_class"><a href="/" class="my_class">fastFrag HTML => JSON</a></div>"""
     
     def process_html_string(self, html_string, pretty_print=True):
-        parser = libs.html_converter.FastFragHTMLParser()
-        parser.feed(html_string)
-        string_out = parser.output_json( pretty_print )
+        try:
+            parser = libs.html_converter.FastFragHTMLParser()
+            parser.feed(html_string)
+            string_out = parser.output_json_string( pretty_print )
+        except Exception,msg:
+            string_out=""
+            logging.exception("max recursion depth error?! %s " % msg)
         
         return string_out
     
     def output_page(self, frag_string):
         self.render("output.html", data_output=frag_string, error=False)
         
-        
-        
-    def _test_frag_output(self, frag_json):
+    def _test_frag_output(self, frag_json_string):
         try:
-            json_frag = json.loads(frag_json)
+            json_frag = json.loads(frag_json_string)
         except:
             logging.info("error, not json?")
-            self.render("output.html", data_output=frag_json, error=True)            
+            self.render("output.html", data_output=frag_json_string, error=True)            
             return
             
-        self.render("render_test.html", frag_test_data=json_frag)
+        self.render("render_test.html", frag_test_data=json_frag, data_output=frag_json_string )
+
 
 
 class MainHandler(BaseHandler):
 
     def get(self):
+        
         self.render("main.html", placeholder=self.sample_html)
     
     def post(self):
@@ -84,7 +88,7 @@ class MainHandler(BaseHandler):
         else:
             pretty_print=True
         
-        logging.info("sweet: pretty print is %s" % pretty_print)
+        logging.info("pretty print JSON is %s" % pretty_print)
         if sample_test:
             string_out=""
             try:
@@ -108,18 +112,12 @@ class MainHandler(BaseHandler):
 
  
 
-class APIHandler(BaseHandler):
-    
-    def get(self):
-        pass
-
 class FragHandler(BaseHandler):
     
     def get(self, filename=None):
         if not filename:
             raise tornado.web.HTTPError(404)
             return
-        
         try:
             self.render("rad/%s.html" % filename)
         except Exception,msg:
@@ -131,6 +129,7 @@ class FragHandler(BaseHandler):
 settings = {
     "blog_title": u"Fast Frag",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
+    "xsrf_cookies": True,    
     # "ui_modules": {"Entry": EntryModule},
     # "xsrf_cookies": True,
 }
