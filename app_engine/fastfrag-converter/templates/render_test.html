@@ -1,75 +1,63 @@
-<!DOCTYPE HTML>
-<html>
+{% extends base.html %}
 
-<!--
-    http://unlicense.org/
-    author: gregory tomlinson
--->
 
-<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
-    <head>
-        <title>Test Frag JSON</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="awesome" />
-        <link rel="stylesheet" href="/static/basic.css" type="text/css" media="screen" title="no title" charset="utf-8">        
-        
-    </head>
-    <body>
-        <div id="container">
 
-            <div id="top_test">
-                <div class="meta">
-                   
-                    <h1 id="html_to_convert">fastFrag JSON Test</h1>
-                    <div class="pretty_print_box">
-                        <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
-                        </div>                    
-                    <p>Test fastFrag appended to element with id:middle below. Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a>. Or, <a href="/">fastFrag HTML => JSON</a> another.</p>                    
+{% block top_content %}
 
-                    
-                </div>                
+<div id="top_test">
+    <div class="meta">
+       
+        <h1 id="html_to_convert">fastFrag JSON Test</h1>
+        <div class="pretty_print_box">
+            <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
+            </div>                    
+        <p>Test fastFrag appended to element with id:middle below. Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a>. Or, <a href="/">fastFrag HTML => JSON</a> another.</p>                    
 
-            </div> <!-- end #top -->
+    </div>                
+
+</div> <!-- end #top -->
+
+{% end %}
+
+{% block middle_content %}
+<div id="middle"></div>
+{% end %}
+
+
+{% block bottom_content %}
+
+<div id="bottom" class="bottom_redisplay">
+
+    <div>
+        <form action="" method="post" accept-charset="utf-8">
             
-            <div id="middle">
-              
+            <div>
+                <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{escape(data_output)}}</textarea>                    
+            </div>
+            <div>
+                <input type="submit" class="converstion_button" name="test_frag" value="Test JSON frag" id="test_frag">
+            </div>
+            {{ xsrf_form_html() }}
+        </form>
 
-            </div> <!-- END #middle -->
-        
-            <div id="bottom" class="bottom_redisplay">
-
-                <div>
-                    <form action="" method="post" accept-charset="utf-8">
-                        
-                        <div>
-                            <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{escape(data_output)}}</textarea>                    
-                        </div>
-                        <div>
-                            <input type="submit" class="converstion_button" name="test_frag" value="Test JSON frag" id="test_frag">
-                        </div>
-                        {{ xsrf_form_html() }}
-                    </form>
-
-                </div>
-                
-                <div class="meta">
-                    <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js">here</a>
-                    
-                    <p>Please note: you should download and keep a local copy, the master branch, linked above, is subject to change </p>
-                </div>                
-
-            </div> <!-- end #bottom -->
-            
-        </div> <!-- end #container -->
+    </div>
     
+    <div class="meta">
+        <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js">here</a>
         
-        <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        
-        
-        <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
-        <script type="text/javascript" charset="utf-8">
-            $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
-        </script>
-      
-    </body>
-</html>
+        <p>Please note: you should download and keep a local copy, the master branch, linked above, is subject to change </p>
+    </div>                
+
+</div> <!-- end #bottom -->
+
+
+{% end %}
+
+{% block javascript %}
+
+<script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
+</script>
+
+{% end %}

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>{% block page_title %}fastFrag Conversion{% end %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="/static/basic.css" type="text/css" media="screen" title="no title" charset="utf-8">        
+        <style type="text/css" media="screen">
+            #convert_button {
+                display:none;
+            }
+        </style>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-2617981-7']);
+          _gaq.push(['_trackPageview']);
+         </script>        
+    </head>
+    <body>
+        <div id="container">
+            {% block top_content %}
+            <div id="top">
+                
+            </div> <!-- end #top -->
+            {% end %}
+            
+            
+            {% block middle_content %}
+            <div id="middle">
+
+                <div class="meta">
+                    
+                    <h1 id="html_to_convert"><a href="http://github.com/gregory80/fastFrag">fastFrag JSON</a></h1>
+                    <div class="pretty_print_box">
+                        <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
+                        </div>                    
+                    <p>fastFrag JSON structure below. Or, <a href="/">fastFrag HTML => JSON</a> another</p>                    
+                    
+                    
+                </div>
+                {% if error %}
+                <p>Oops, looks like that isn't valid JSON. Did you change it? Or did we screw up? Tell us <a href="http://github.com/gregory80/fastFrag/issues" target="_blank">here</a> if we did.</p>
+                {% end %}
+                <div>
+                    <form action="" method="post" accept-charset="utf-8">
+                        
+                        <div>
+                            <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{escape(data_output)}}</textarea>                    
+                        </div>
+                        <div>
+                            <input type="submit" class="converstion_button" name="test_frag" value="Test JSON frag" id="test_frag">
+                        </div>
+                        {{ xsrf_form_html() }}
+                    </form>
+
+                </div>
+
+
+                <div class="meta">
+                    <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js">here</a>
+                    
+                    <p>Please note: you should download and keep a local copy, the master branch, linked above, is subject to change </p>
+                </div>
+
+            </div> <!-- END #middle -->
+            {% end %}
+        
+            {% block bottom_content %}
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            {% end %}
+            
+        </div> <!-- end #container -->
+    
+        
+        <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        
+        {% block javascript %}{% end %}
+        
+      <script type="text/javascript" charset="utf-8">
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+    </body>
+</html>

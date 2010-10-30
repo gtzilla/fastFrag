@@ -76,7 +76,7 @@ For more complete examples see Usage below, or [convert html now](http://fastfra
 Why do I want or need this?
 ----------
 
-If you need to create HTML structure (somehow) with JavaScript, be that getting data from a server (AJAX) or rendering a button based on a certain state, this library is for you. 
+If you need to create HTML structure (somehow) with JavaScript, be that getting data from a server (AJAX) or rendering a button based on a certain state, injecting user data into the DOM, this library is for you. 
 
 As a benefit, it handles all the escaping worries you used to have. No more Regular Expressions to 'clean up' or escape data.
 
@@ -84,12 +84,14 @@ As a benefit, it handles all the escaping worries you used to have. No more Regu
 When is this useful?
 ----------
 
-When you need to render / change the DOM [Document Object Model] from JavaScript.
+When you need to render / change the DOM [Document Object Model] via JavaScript.
 
 Do I need all this stuff?
 ------------
 
-Nope, you only need [fastFrag.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js) or [fastFrag.min.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js) to use fastFrag. That's it. The remaining portion of the project comprises samples, tests, markdown extension, and app engine code for converting HTML to fastFrag JSON, [here](http://fastfrag-converter.appspot.com/). 
+Nope, you only need [fastFrag.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js) or [fastFrag.min.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js) to use fastFrag. That's it. 
+
+The remaining portion of the project comprises samples, tests, a markdown extension, Textmate snippets, jQuery plugin sample, and finally, app engine code for converting HTML to fastFrag JSON, use it [here](http://fastfrag-converter.appspot.com/). 
 
 Usage
 -----
@@ -286,14 +288,14 @@ FAQ
 
 * Why this syntax?
 
-    It seemed simple and I wanted to avoid any possible conflicts or errors if the Object key is not quoted, for example 'class' is a keyword for some environments, css, is not.  I'm not married to it, any suggestions are welcome, please send me a note or file an issue: <http://github.com/gregory80/fastFrag/issues>
+    It seemed simple and I wanted to avoid any possible conflicts or errors if the Object key is not quoted, for example 'class' is a keyword for some environments, css, is not.  I'm not married to it, any suggestions are welcome, please send me a note or file an issue: <http://github.com/gregory80/fastFrag/issues>. 
     
     Though there are still some cases where this is unavoidable, the 'for=""' attribute on labels comes to mind, 'for' must be quoted. For example
     
         var structure = {
             type : "label",
             content : "My label",
-            attributes : {
+            attrs : {
                 'for' : 'the_input_id'
             }
         }

@@ -7,7 +7,6 @@
 #  Original sample code from google applied to their app server, converted to tornado
 # 
 
-
 import re
 import os
 import tornado.web
@@ -19,7 +18,6 @@ try:
     import json
 except:
     import simplejson as json
-
 
 import libs.html_converter
 
@@ -54,6 +52,25 @@ class BaseHandler( tornado.web.RequestHandler  ):
         
         self.render("render_test.html", frag_test_data=json_frag, data_output=frag_json_string )
 
+
+    ##
+    def get_render_args(self):
+        return {
+        }
+            
+    def render(self, *args, **kwargs):
+        """ pass in extra values to templates
+        an easy spot to set the X-UA-Compatible header if this is a html response """
+        new_kwargs = self.get_render_args()
+        if not kwargs.get("error"):
+            kwargs['error'] = False
+        new_kwargs.update(kwargs)
+        self.set_header("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate")
+        self.set_header("Pragma", "no-cache")
+        # turn on google chrome frame when available
+        if 'chromeframe' in self.request.headers.get('User-Agent', []):
+            self.set_header("X-UA-Compatible","chrome=1")
+        return super(BaseHandler, self).render(*args, **new_kwargs)
 
 
 class MainHandler(BaseHandler):
@@ -122,7 +139,6 @@ settings = {
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
     # "ui_modules": {"Entry": EntryModule},
-    # "xsrf_cookies": True,
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
