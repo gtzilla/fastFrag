@@ -7,6 +7,8 @@
             // creates: <div>hello world</div>
             
             Learn more: http://github.com/gregory80/fastFrag/blob/master/README.md
+            
+            Convert HTML to fastFrag (fast!): http://fastfrag-converter.appspot.com/
     */
 
     var fastFrag = {
