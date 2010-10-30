@@ -29,10 +29,13 @@
             <div id="middle">
                 
                 <div class="meta">
-                    
+                   
                     <h1 id="html_to_convert">Convert HTML to fastFrag JSON (alpha)</h1>
+                    <div class="pretty_print_box">
+                        <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
+                        </div>                    
                     <p>Convert HTML to <a href="http://github.com/gregory80/fastFrag">fastFrag</a> JSON structure.</p>                    
-                    
+
                     
                 </div>
 
@@ -42,9 +45,18 @@
                     <textarea placeholder="{{escape(placeholder)}}" id="main_text_input" name="html_string"></textarea>
                     
                     <div>
-                        <input type="submit" name="" value="Convert" id="convert_button">
-                        <input type="submit" name="sample_test" value="Convert Sample" id="sample_test">                                                
+                        <div class="pretty_print_box">
+                            <label for="pretty_print">pretty print</label>
+                            <input type="checkbox" name="pretty_print" checked value="true" id="pretty_print">                        
+                        </div>
+                        <div>
+                            <input type="submit" name="" class="converstion_button" value="Convert" id="convert_button">
+                            <input type="submit" class="converstion_button" name="sample_test" value="Convert Sample" id="sample_test">                                                
+                        </div>
+                        <div class="hr"><hr /></div>
                     </div>
+
+                    
 
                     {{ xsrf_form_html() }}
                 </form>

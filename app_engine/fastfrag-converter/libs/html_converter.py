@@ -166,8 +166,12 @@ class FastFragHTMLParser(HTMLParser):
         
         #print "Encountered the end of a %s tag" % tag
 
-    def output_json(self):
-        out_results = json.dumps( self.fragList, sort_keys=True, indent=4 )
+    def output_json(self, pretty_print=True):
+        
+        if pretty_print:
+            out_results = json.dumps( self.fragList, sort_keys=True, indent=4 )
+        else:
+            out_results = json.dumps( self.fragList )
         logging.info(out_results)
         return out_results
     

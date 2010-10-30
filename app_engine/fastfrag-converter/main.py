@@ -35,36 +35,43 @@ class BaseHandler( tornado.web.RequestHandler  ):
     def sample_html(self):
         return """<div id="my_id"><a href="http://example.com" class="my_class">text stripped</a></div>"""
     
-    def process_html_string(self, html_string):
+    def process_html_string(self, html_string, pretty_print=True):
         parser = libs.html_converter.FastFragHTMLParser()
         parser.feed(html_string)
-        string_out = parser.output_json()
+        string_out = parser.output_json( pretty_print )
         
         return string_out
-        
+    
     def output_page(self, frag_string):
-        
-        
         self.render("output.html", data_output=frag_string)
-
         
+
 
 class MainHandler(BaseHandler):
-    
-    
+
+
     
     def get(self):
         self.render("main.html", placeholder=self.sample_html)
-        
+    
     def post(self):
         text_string = self.get_argument("html_string", None)
-        sample_test = self.get_argument("sample_test", None)        
+        sample_test = self.get_argument("sample_test", None)
+        pretty_print = self.get_argument("pretty_print", None)
+        
+        if not pretty_print:
+            pretty_print=False
+        else:
+            pretty_print=True
+        
+        logging.info("sweet: pretty print is %s" % pretty_print)
         if sample_test:
             string_out=""
             try:
-                string_out = self.process_html_string( self.sample_html  )
+                string_out = self.process_html_string( self.sample_html, pretty_print  )
             except:
                 pass
+                
             self.output_page( string_out )
             return
         
@@ -73,15 +80,14 @@ class MainHandler(BaseHandler):
             return
         string_out=""
         try:
-            string_out = self.process_html_string( text_string  )
+            string_out = self.process_html_string( text_string, pretty_print  )
         except Exception,msg:
             logging.exception("error %s" % msg )
         
         self.output_page( string_out )
-        
-        
-        
-        
+
+ 
+
 class APIHandler(BaseHandler):
     
     def get(self):
@@ -93,13 +99,13 @@ class FragHandler(BaseHandler):
         if not filename:
             raise tornado.web.HTTPError(404)
             return
-            
+        
         try:
             self.render("rad/%s.html" % filename)
         except Exception,msg:
             logging.warn("error rendering template %s" % msg)
             raise tornado.web.HTTPError(404)
-            
+
 
 ##
 settings = {
