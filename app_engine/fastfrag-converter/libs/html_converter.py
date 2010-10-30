@@ -51,7 +51,7 @@ class FastFragHTMLParser(HTMLParser):
         will handle any properly formatted HTML, otherwise, the tag will 
         end up here, adjust as need"""
         
-        if tag == "img" or tag=="input" or tag == "br" or tag == "hr":
+        if tag in ["col", "img", "input", "br", "hr"]:
             logging.info("shit HTML headed in")
             self.node_depth+=1 
             frag = self._create_basic_frag( tag, attrs )

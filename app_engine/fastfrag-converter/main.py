@@ -50,6 +50,7 @@ class BaseHandler( tornado.web.RequestHandler  ):
         self.render("output.html", data_output=frag_string, error=False)
         
         
+        
     def _test_frag_output(self, frag_json):
         try:
             json_frag = json.loads(frag_json)
