@@ -96,7 +96,9 @@ class MainHandler(BaseHandler):
             pretty_print=True
         
         logging.info("pretty print JSON is %s" % pretty_print)
+        
         if sample_test:
+            ## convert the sample
             string_out=""
             try:
                 string_out = self.process_html_string( self.sample_html, pretty_print  )

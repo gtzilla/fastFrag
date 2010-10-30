@@ -21,7 +21,7 @@ Overview
 
 Who, what when where why of fastFrag.
 
-You give fastFrag JSON and it gives you back HTML (a Docment Fragment) that is ready to be added to the DOM.
+You give fastFrag JSON and it gives you back HTML (a Document Fragment) that is ready to be added to the DOM.
 
 Convert your existing HTML to fastFrag JSON in less than a second visit [fastFrag converter](http://fastfrag-converter.appspot.com/), paste in HTML and get fastFrag JSON back.
 
@@ -362,6 +362,9 @@ For more information, please refer to http://unlicense.org/
 
 Changelog
 -------
+
+1.1.1
+Rename functions, re-organize file, group method types
 
 1.1
 JavaScript change: move to try/catch based sub node append to handle IE errors regarding appending nodes to IMG, INPUT, BR, HR or other 'self' closed tags via the DOM.

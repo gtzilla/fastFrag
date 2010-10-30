@@ -11,7 +11,7 @@
         <div class="pretty_print_box">
             <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
             </div>                    
-        <p>Test fastFrag appended to element with id:middle below. Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a>. Or, <a href="/">fastFrag HTML => JSON</a> another.</p>                    
+        <p>Test fastFrag appended to element with id:middle below. Learn more about <a href="http://github.com/gregory80/fastFrag" target="_blank">fastFrag on github</a>. Or, <a href="/">fastFrag HTML => JSON</a> another.</p>                    
 
     </div>                
 
@@ -43,7 +43,7 @@
     </div>
     
     <div class="meta">
-        <p>Learn more about <a href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js">here</a>
+        <p>Learn more about <a target="_blank" href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80" target="_blank">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js" target="_blank">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js" target="_blank">here</a>
         
         <p>Please note: you should download and keep a local copy, the master branch, linked above, is subject to change </p>
     </div>                
@@ -56,7 +56,7 @@
 {% block javascript %}
 
 <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript" id="fragData" charset="utf-8">
     $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
 </script>
 
