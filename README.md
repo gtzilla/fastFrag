@@ -160,7 +160,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
 // create the below html with fastFrag
 
     <div class="mainClass">
-        <a href="http://github.com/gregory80/fastFrag">Fast Frag Repos</a> | <a href="#">link two</a>
+        <a href="http://github.com/gregory80/fastFrag">fastFrag Repos</a> | <a href="#">link two</a>
     </div>    
     
 // the code:
@@ -169,7 +169,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
         css : "mainClass",
         content : [{
             type : "a",
-            content : "Fast Frag Repos"
+            content : "fastFrag Repo"
             attrs : {
                 href : "http://github.com/gregory80/fastFrag"
             }

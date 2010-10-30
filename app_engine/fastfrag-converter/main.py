@@ -137,7 +137,7 @@ class FragHandler(BaseHandler):
 
 ##
 settings = {
-    "blog_title": u"Fast Frag",
+    "blog_title": u"fastFrag",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
     # "ui_modules": {"Entry": EntryModule},
