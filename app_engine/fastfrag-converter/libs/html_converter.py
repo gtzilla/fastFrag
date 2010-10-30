@@ -1,3 +1,13 @@
+# 
+#  html_converter.py
+#  fastFrag
+#  
+#  Created by gregory tomlinson 
+#  see README.md for more information
+# 
+    
+
+
 
 from HTMLParser import HTMLParser
 import logging

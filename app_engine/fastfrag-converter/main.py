@@ -1,19 +1,12 @@
 #!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# 
+#  main.py
+#  fastFrag
+#  
+#  Created by gregory tomlinson.
+#  Original sample code from google applied to their app server, converted to tornado
+# 
+
 
 import re
 import os
@@ -27,7 +20,7 @@ try:
 except:
     import simplejson as json
 
-# from google.appengine.ext import webapp
+
 import libs.html_converter
 
 
@@ -134,8 +127,6 @@ settings = {
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
     (r"/rad/(.*)", FragHandler),
-    # (r"/feed", FeedHandler),
-    # (r"/entry/([^/]+)", EntryHandler),
 ], **settings)
 
 
