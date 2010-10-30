@@ -34,9 +34,20 @@
                     
                     
                 </div>
-
+                {% if error %}
+                <p>Oops, looks like that isn't valid JSON. Did you change it? Or did we screw up? Tell us <a href="http://github.com/gregory80/fastFrag/issues" target="_blank">here</a> if we did.</p>
+                {% end %}
                 <div>
-                    <textarea name="" id="main_text_input">{{data_output}}</textarea>                    
+                    <form action="" method="post" accept-charset="utf-8">
+                        
+                        <div>
+                            <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{data_output}}</textarea>                    
+                        </div>
+                        <div>
+                            <input type="submit" name="test_frag" value="Test Frag" id="test_frag">
+                        </div>
+                    </form>
+
                 </div>
                 
 

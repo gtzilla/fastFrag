@@ -30,9 +30,10 @@ class FastFragHTMLParser(HTMLParser):
         return frag        
     
     def handle_startendtag(self, tag, attrs):
-
+        self.node_depth+=1 
         frag = self._create_basic_frag( tag, attrs )
-        self._get_frag_location( frag, self.fragList )        
+        self._get_frag_location( frag, self.fragList )    
+        self.node_depth-=1     
         logging.info("start_endtag %s and  %s" % (tag, frag) )        
         ## decrement self close
         ## no action for sel closed?
@@ -50,7 +51,7 @@ class FastFragHTMLParser(HTMLParser):
         will handle any properly formatted HTML, otherwise, the tag will 
         end up here, adjust as need"""
         
-        if tag == "img" or tag=="input" or tag == "br":
+        if tag == "img" or tag=="input" or tag == "br" or tag == "hr":
             logging.info("shit HTML headed in")
             self.node_depth+=1 
             frag = self._create_basic_frag( tag, attrs )

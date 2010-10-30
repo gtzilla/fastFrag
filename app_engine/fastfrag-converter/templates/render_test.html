@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Test Frag JSON</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <link rel="stylesheet" href="/static/basic.css" type="text/css" media="screen" title="no title" charset="utf-8">        
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+        <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        
+        
+        <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
+        </script>
+      
+    </body>
+</html>

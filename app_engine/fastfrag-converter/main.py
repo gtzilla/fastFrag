@@ -23,6 +23,10 @@ import tornado.wsgi
 import unicodedata
 import wsgiref.handlers
 import logging
+try:
+    import json
+except:
+    import simplejson as json
 
 # from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -43,14 +47,22 @@ class BaseHandler( tornado.web.RequestHandler  ):
         return string_out
     
     def output_page(self, frag_string):
-        self.render("output.html", data_output=frag_string)
+        self.render("output.html", data_output=frag_string, error=False)
         
+        
+    def _test_frag_output(self, frag_json):
+        try:
+            json_frag = json.loads(frag_json)
+        except:
+            logging.info("error, not json?")
+            self.render("output.html", data_output=frag_json, error=True)            
+            return
+            
+        self.render("render_test.html", frag_test_data=json_frag)
 
 
 class MainHandler(BaseHandler):
 
-
-    
     def get(self):
         self.render("main.html", placeholder=self.sample_html)
     
@@ -58,6 +70,13 @@ class MainHandler(BaseHandler):
         text_string = self.get_argument("html_string", None)
         sample_test = self.get_argument("sample_test", None)
         pretty_print = self.get_argument("pretty_print", None)
+        frag_text_output = self.get_argument("frag_text_output", None)
+
+        
+        if frag_text_output:
+            logging.info("the frag text is %s" % frag_text_output )            
+            self._test_frag_output( frag_text_output )
+            return
         
         if not pretty_print:
             pretty_print=False

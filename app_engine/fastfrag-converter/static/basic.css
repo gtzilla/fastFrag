@@ -38,7 +38,7 @@ body {
 
 }
 
-#main_text_input {
+.text_display_area {
     width:670px;
     height:420px;
     border:1px solid #666;
