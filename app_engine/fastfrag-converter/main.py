@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-
 import re
 import os
 import tornado.web
@@ -29,7 +28,6 @@ except:
     import simplejson as json
 
 # from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
 import libs.html_converter
 
 
@@ -52,21 +50,21 @@ class BaseHandler( tornado.web.RequestHandler  ):
     
     def output_page(self, frag_string):
         self.render("output.html", data_output=frag_string, error=False)
-        
+    
     def _test_frag_output(self, frag_json_string):
         try:
             json_frag = json.loads(frag_json_string)
         except:
             logging.info("error, not json?")
-            self.render("output.html", data_output=frag_json_string, error=True)            
+            self.render("output.html", data_output=frag_json_string, error=True)
             return
-            
+        
         self.render("render_test.html", frag_test_data=json_frag, data_output=frag_json_string )
 
 
 
 class MainHandler(BaseHandler):
-
+    
     def get(self):
         
         self.render("main.html", placeholder=self.sample_html)
@@ -76,10 +74,9 @@ class MainHandler(BaseHandler):
         sample_test = self.get_argument("sample_test", None)
         pretty_print = self.get_argument("pretty_print", None)
         frag_text_output = self.get_argument("frag_text_output", None)
-
+        
         
         if frag_text_output:
-            logging.info("the frag text is %s" % frag_text_output )            
             self._test_frag_output( frag_text_output )
             return
         
@@ -95,7 +92,7 @@ class MainHandler(BaseHandler):
                 string_out = self.process_html_string( self.sample_html, pretty_print  )
             except:
                 pass
-                
+            
             self.output_page( string_out )
             return
         
@@ -109,13 +106,14 @@ class MainHandler(BaseHandler):
             logging.exception("error %s" % msg )
         
         self.output_page( string_out )
-
  
+
 
 class FragHandler(BaseHandler):
     
     def get(self, filename=None):
         if not filename:
+            ## lazy quick static file server
             raise tornado.web.HTTPError(404)
             return
         try:
@@ -129,7 +127,7 @@ class FragHandler(BaseHandler):
 settings = {
     "blog_title": u"Fast Frag",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
-    "xsrf_cookies": True,    
+    "xsrf_cookies": True,
     # "ui_modules": {"Entry": EntryModule},
     # "xsrf_cookies": True,
 }
@@ -138,16 +136,11 @@ application = tornado.wsgi.WSGIApplication([
     (r"/rad/(.*)", FragHandler),
     # (r"/feed", FeedHandler),
     # (r"/entry/([^/]+)", EntryHandler),
-    # (r"/compose", ComposeHandler),
 ], **settings)
 
 
 def main():
     wsgiref.handlers.CGIHandler().run(application)
-    # application = webapp.WSGIApplication([('/', MainHandler)],
-    #                                      debug=True)
-    # util.run_wsgi_app(application)
-
-
+    logging.info("start app")
 if __name__ == '__main__':
     main()

@@ -30,7 +30,7 @@
                     <div class="pretty_print_box">
                         <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
                         </div>                    
-                    <p>fastFrag JSON structure below. Or, <a href="/">fastFrag another</a></p>                    
+                    <p>fastFrag JSON structure below. Or, <a href="/">fastFrag HTML => JSON</a> another</p>                    
                     
                     
                 </div>
@@ -41,7 +41,7 @@
                     <form action="" method="post" accept-charset="utf-8">
                         
                         <div>
-                            <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{data_output}}</textarea>                    
+                            <textarea name="frag_text_output" id="frag_text_output" class="text_display_area">{{escape(data_output)}}</textarea>                    
                         </div>
                         <div>
                             <input type="submit" class="converstion_button" name="test_frag" value="Test JSON frag" id="test_frag">
