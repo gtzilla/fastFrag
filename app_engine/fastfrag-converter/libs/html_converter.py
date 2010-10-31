@@ -91,24 +91,25 @@ class FastFragHTMLParser(HTMLParser):
             ## TODO
             ## Known error: see notes_python_converstion.text ERROR: Images and Text
             text_data_dict = { 'text' : data }
-            if not self.active_frag:
-                 logging.info("broken? %s" % text_data_dict)
-                 self.active_frag = text_data_dict  
-            else:
-                try:
-                    curr_node = self.active_frag.get('content')
-                except:
-                    curr_node=self.active_frag
-                
-                if type(curr_node) == dict:
-                    if curr_node.get('text'):
-                        curr_node=text_data_dict
-                    else:
-                        curr_node=[ self.active_frag.get('content'), text_data_dict ]
-                elif type(curr_node) == list:
-                    curr_node[len(curr_node)-1]['content']=text_data_dict
-                else:
-                    self.active_frag['content']=text_data_dict
+            self.active_frag['content']=text_data_dict
+            # if not self.active_frag:
+            #      logging.info("broken? %s" % text_data_dict)
+            #      self.active_frag = text_data_dict  
+            # else:
+            #     try:
+            #         curr_node = self.active_frag.get('content')
+            #     except:
+            #         curr_node=self.active_frag
+            #     
+            #     if type(curr_node) == dict:
+            #         if not curr_node.get('text'):
+            #             curr_node=text_data_dict
+            #         else:
+            #             curr_node=[ self.active_frag.get('content'), text_data_dict ]
+            #     elif type(curr_node) == list:
+            #         curr_node[len(curr_node)-1]['content']=text_data_dict
+            #     else:
+            #         self.active_frag['content']=text_data_dict
                           
     
     def handle_starttag(self, tag, attrs):
@@ -130,7 +131,7 @@ class FastFragHTMLParser(HTMLParser):
         
         
         frag = self._create_basic_frag( tag, attrs )
-        # self.active_frag=frag
+        self.active_frag=frag
         if not self.fragList:
             self.fragList = frag
             self.fragList['content'] = {}
@@ -210,7 +211,7 @@ class FastFragHTMLParser(HTMLParser):
     ## -- literally append this object to the the growing self.fragList
     def _add_frag_element(self, frag_el, start_el ):
         if self._last_elem:
-            self.active_frag=self._last_elem
+            #self.active_frag=self._last_elem
             ## last elem is a recursive marker, 
             ## it's the 'parent' node in HTML terms            
             try:
@@ -237,7 +238,7 @@ class FastFragHTMLParser(HTMLParser):
                 self.fragList=[start_el,frag_el]
             elif type(self.fragList) == list:
                 self.fragList.append(frag_el)
-            self.active_frag=self.fragList               
+            #self.active_frag=self.fragList               
 
              
 
