@@ -123,6 +123,19 @@ class MainHandler(BaseHandler):
         self.output_page( string_out )
  
 
+class FragJSONTestHandler(BaseHandler):
+    
+    
+    def get(self):
+        self.output_page("")
+        
+    def post(self):
+        frag_text_output = self.get_argument("frag_text_output", None)        
+        if not frag_text_output:
+            self.output_page("")
+            return
+        self._test_frag_output( frag_text_output )
+
 
 class FragHandler(BaseHandler):
     
@@ -147,6 +160,7 @@ settings = {
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
+    (r"/frag", FragJSONTestHandler),    
     (r"/rad/(.*)", FragHandler),
 ], **settings)
 
