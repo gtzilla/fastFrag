@@ -214,7 +214,7 @@ FAQ
 
     Try out any fastFrag structures directly at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about attribute key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4), JavaScript is much more forgiving in this manner, consider this URL ultra-strict.
         
-    For example, JavaScript would be fine with { content : "some data" }, but python gets fussy and wants it to be { "content" : "some data" }. This is only relevant to the testing mechanism via json.fastfrag.org
+    For example, JavaScript would be fine with { content : "some data" }, but python gets fussy and wants it to be { "content" : "some data" }. This is only relevant to the testing mechanism via <http://json.fastfrag.org/frag>
 
 
 * How do I use this with other libraries?
