@@ -102,17 +102,14 @@ class FastFragHTMLParser(HTMLParser):
                 elif type(curr_node) == list:
                     logging.info("it's a list %s" % text_data_dict  )                    
                     self.active_frag[ len(self.active_frag) -1 ].append( text_data_dict )
-                    
-                
-                
-                
+
             elif self.active_frag.get('content'):
                 curr_content = self.active_frag.get('content')
-                logging.info("it's something else... %s and fraf is %s" % (text_data_dict,self.active_frag) )
                 if type(curr_content) == dict:
                     self.active_frag['content'] = [curr_content, text_data_dict]
                 elif type(curr_content) == list:
-                    self.active_frag.get('content').append( text_data_dict )
+                    logging.info("this is the item %s" % text_data_dict )
+                    self.active_frag.get('content')[len(curr_content)-1]['content'] = text_data_dict
                 else:
                     logging.warn("oops, the data node is node getting added right")
             else:
