@@ -208,7 +208,8 @@ FAQ
         
         
     There are additional options to -s (a string), including -f (a file) or -r the URL or a remote source. Suggestions and improvements are welcome. Currently setup for python 2.6. 
-    
+
+
 * How can I easily Test fastFrag structures.
 
     Try out any fastFrag structures directly at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about attribute key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4), JavaScript is much more forgiving in this manner, consider this URL ultra-strict.
