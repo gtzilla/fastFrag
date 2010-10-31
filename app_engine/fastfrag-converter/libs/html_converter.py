@@ -91,7 +91,19 @@ class FastFragHTMLParser(HTMLParser):
             ## TODO
             ## Known error: see notes_python_converstion.text ERROR: Images and Text
             text_data_dict = { 'text' : data }
-            self.active_frag['content']=text_data_dict
+            try:
+                curr_node =self.active_frag.get('content')
+            except:
+                curr_node=None
+            
+            if type(curr_node) == dict:
+                logging.info("it's a dictionary %s and %s " % (data,curr_node) )
+                self.active_frag['content'] = [curr_node,text_data_dict]
+            elif type(curr_node) == list:
+                logging.info("it's a list %s and %s " % (data,curr_node) )
+            
+            elif not curr_node:    
+                self.active_frag['content']=text_data_dict
             # if not self.active_frag:
             #      logging.info("broken? %s" % text_data_dict)
             #      self.active_frag = text_data_dict  
