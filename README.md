@@ -282,7 +282,9 @@ FAQ
 
     That's a yes and no answer. fastFrag will create and execute script tags if you tell it too. fastFrag will not, however, allow users to 'inject' script tags into your page via strings, such as usernames or other user generated content.
     
-    Let's looks at two examples, already in fastFrag Structure. In the first sample, we have added a string with script tags right in it. This will add a div to the page with exact text: "&lt;script>alert('pwned');&lt;/script>". The script will not be executed. 
+    Let's looks at two examples, already in fastFrag Structure. In the first sample, we have added a string with script tags right in it. This will add a div to the page with exact text: "&lt;script&gt;alert('pwned');&lt;/script;gt;". The script will not be executed.  (Hilariously, github cannot safely display the string in the above, while fastFrag could. Reprinted as code below:)
+    
+        <script>alert('pwned');</script>
     
     In the second case, we explicitly ask for our node type to be a **script**, which is then executed appropriately. Try out these examples by copy and pasting the below JSON frags to <http://json.fastfrag.org/frag>
     
