@@ -22,6 +22,7 @@ except:
 import libs.html_converter
 
 
+
 class BaseHandler( tornado.web.RequestHandler  ):
     
     @property
@@ -32,6 +33,7 @@ class BaseHandler( tornado.web.RequestHandler  ):
         try:
             parser = libs.html_converter.FastFragHTMLParser()
             parser.feed(html_string)
+            
             string_out = parser.output_json_string( pretty_print )
         except Exception,msg:
             string_out=""

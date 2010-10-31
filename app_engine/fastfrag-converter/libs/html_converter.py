@@ -55,6 +55,7 @@ class FastFragHTMLParser(HTMLParser):
     def handle_startendtag(self, tag, attrs):
         self.node_depth+=1
         frag = self._create_basic_frag( tag, attrs )
+        # self.active_frag=frag
         self._get_frag_location( frag, self.fragList )
         self.node_depth-=1
         ## decrement self close
@@ -62,18 +63,61 @@ class FastFragHTMLParser(HTMLParser):
 
     def handle_endtag(self, tag):
         ## just move the node counter
+        
         self.node_depth-=1
+        # self.close_counter=-1
+        # def close_lookup( start_el ):
+        #     
+        #     self.close_counter+=1
+        #     ## correct location: add frag, adjust existing location as needed
+        #     ## dict -> list, append 'new' (frag_el) item
+        #     if self.close_counter == self.node_depth:
+        #         self.active_frag=start_el
+        #     else:
+        #         # crawl, go deeper and deeper
+        #         parent_node,next_el=self._crawler_deeper( start_el )
+        #                         
+        #         ## recurse
+        #         close_lookup( next_el )
+        #     # return start_el
+        # close_lookup( self.fragList )        
     
     
     def handle_data(self,data):
         if data and data.strip() != "":
             ## add 'text' as an object (dict), 
             ## this is not requrired, could just be a string, make it easier on the parser
+            text_data_dict = { 'text' : data }
             if not self.active_frag:
-                self.active_frag = { 'text' : data }
+                logging.info("broken? %s" % text_data_dict)
+                self.active_frag = text_data_dict
+                return
+            
+            elif type(self.active_frag) == list:
+                curr_node = self.active_frag[ len(self.active_frag) -1 ]
+                logging.info("it's a dict %s and weird %s" % (curr_node,text_data_dict) )                
+                if type(curr_node) == dict:
+                    logging.info("it's a dict %s" % text_data_dict )
+                    self.active_frag[ len(self.active_frag) -1 ]['content'] = text_data_dict
+                elif type(curr_node) == list:
+                    logging.info("it's a list %s" % text_data_dict  )                    
+                    self.active_frag[ len(self.active_frag) -1 ].append( text_data_dict )
+                    
                 
+                
+                
+            elif self.active_frag.get('content'):
+                curr_content = self.active_frag.get('content')
+                logging.info("it's something else... %s and fraf is %s" % (text_data_dict,self.active_frag) )
+                if type(curr_content) == dict:
+                    self.active_frag['content'] = [curr_content, text_data_dict]
+                elif type(curr_content) == list:
+                    self.active_frag.get('content').append( text_data_dict )
+                else:
+                    logging.warn("oops, the data node is node getting added right")
             else:
-                self.active_frag['content'] = { 'text' : data }
+                logging.info("overright ? %s" % text_data_dict)                
+                self.active_frag['content'] = text_data_dict
     
     def handle_starttag(self, tag, attrs):
         
@@ -94,7 +138,7 @@ class FastFragHTMLParser(HTMLParser):
         
         
         frag = self._create_basic_frag( tag, attrs )
-        self.active_frag=frag
+        # self.active_frag=frag
         if not self.fragList:
             self.fragList = frag
             self.fragList['content'] = {}
@@ -174,6 +218,7 @@ class FastFragHTMLParser(HTMLParser):
     ## -- literally append this object to the the growing self.fragList
     def _add_frag_element(self, frag_el, start_el ):
         if self._last_elem:
+            self.active_frag=self._last_elem
             ## last elem is a recursive marker, 
             ## it's the 'parent' node in HTML terms            
             try:
@@ -200,5 +245,8 @@ class FastFragHTMLParser(HTMLParser):
                 self.fragList=[start_el,frag_el]
             elif type(self.fragList) == list:
                 self.fragList.append(frag_el)
+            self.active_frag=self.fragList               
+
+             
 
 
