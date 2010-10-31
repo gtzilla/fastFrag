@@ -22,7 +22,7 @@ Who, what when where why of fastFrag.
 
 You give fastFrag JSON and it gives you back HTML (a Document Fragment) that is ready to be added to the DOM.
 
-Convert your existing HTML to fastFrag JSON in less than a second visit [fastFrag converter](http://fastfrag-converter.appspot.com/), paste in HTML and get fastFrag JSON back.
+Convert your existing HTML to fastFrag JSON in less than a second visit [fastFrag converter](http://json.fastfrag.org), paste in HTML and get fastFrag JSON back.
 
 How does it work
 ----------
@@ -69,7 +69,7 @@ An extremely simple **JS helper library** for making HTML (a document fragment) 
 
         var frag_results = fastFrag.create( { id : "my_id" }  ); // return <div id="my_id"></div>
         
-For more complete examples see Usage below, or [convert html now](http://fastfrag-converter.appspot.com/).
+For more complete examples see Usage below, or [convert html now](http://json.fastfrag.org).
 
 
 Why do I want or need this?
@@ -90,7 +90,7 @@ Do I need all this stuff?
 
 Nope, you only need [fastFrag.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js) or [fastFrag.min.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js) to use fastFrag. That's it. 
 
-The remaining portion of the project comprises samples, tests, a markdown extension, Textmate snippets, jQuery plugin sample, and finally, app engine code for converting HTML to fastFrag JSON, use it [here](http://fastfrag-converter.appspot.com/). 
+The remaining portion of the project comprises samples, tests, a markdown extension, Textmate snippets, jQuery plugin sample, and finally, app engine code for converting HTML to fastFrag JSON, use it [here](http://json.fastfrag.org). 
 
 Usage
 -----
@@ -195,7 +195,7 @@ FAQ
 
 * I already wrote my HTML, converting it seems annoying, got anything to make it less so?
     
-    Absolutely, you have two options, first: visit [fastFrag converter](http://fastfrag-converter.appspot.com/), paste in HTML and get fastFrag JSON back.
+    Absolutely, you have two options, first: visit [fastFrag converter](http://json.fastfrag.org), paste in HTML and get fastFrag JSON back.
     
     
     Second, in the python folder, there is a script that takes a variety of formats and returns fastFrag JSON, ready to go

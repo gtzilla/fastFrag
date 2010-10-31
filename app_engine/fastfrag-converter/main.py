@@ -125,7 +125,6 @@ class MainHandler(BaseHandler):
 
 class FragJSONTestHandler(BaseHandler):
     
-    
     def get(self):
         self.output_page("")
         
