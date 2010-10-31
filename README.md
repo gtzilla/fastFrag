@@ -8,7 +8,6 @@ A simple JS library for making HTML from JSON. Include fastFrag.js and you're re
 UNLICENSE
 -----
 
-
 [unlicense](http://unlicense.org/) 
 
 This is free and unencumbered software released into the public domain.
@@ -280,7 +279,7 @@ FAQ
         
 * Does fastFrag Execute JavaScript code?
 
-    That's a yes and no answer. fastFrag will create and execute script tags if you tell it too, fastFrag will not however, allow users to 'inject' script tags into your page via strings, such as usernames or other user generated content.
+    That's a yes and no answer. fastFrag will create and execute script tags if you tell it too. fastFrag will not, however, allow users to 'inject' script tags into your page via strings, such as usernames or other user generated content.
     
     Let's looks at two examples, already in fastFrag Structure. In the first sample, we have added a string with script tags right in it. This will add a div to the page with exact text: "<script>alert('pwned');</script>". The script will not be executed. 
     
@@ -326,47 +325,7 @@ FAQ
         }
         
         
-    Try out these examples, or any fastFrag examples at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about key quoting (working on a patch.) JavaScript is much more forgiving in this manner, consider this URL ultra-strict
-    
-    
-
-    Why Does this exist?
-    -----------
-
-    I personally found myself needing to render HTML from JavaScript. Over the years, I have tried a variety of different techniques (fastFrag-like included) to do this. All previous iterations suffered from one of two fatal flaws. 
-
-    1.  It was potentially insecure, such as using a regular expression or string matching to replace values, for example:
-
-            var myTemplateString = "some value here $replacevalue"
-
-        or this example
-
-            var myTemplateString = "fo bar blah {{title}} and {{body}} etc"
-
-    1.  It was practically impossible to read or maintain, maybe it was something like this:
-
-            jQuery("#someId").html('<div class="myClass"><div><ul><li><a href="">foo</a></li><li><a href="">bar</a></li></div></div>')
-
-    That's hard to read, difficult to maintain is basically entirely specific to the project. Recovering that string of 'text' would provide very little value.
-
-    Since I like simple, easy to understand things. I wrote fastFrag in a few hours (weeks of testing). There are definitely other libraries out there, most have significantly more options or required some server side aspect to *prepare* the data and template. Since none of the existing options did what I needed, I wrote this. A purely client-side JavaScript template powered by JSON and returning valid Document Fragments for DOM insertion. 
-
-    Some Stats, Is it actually fast?
-    --------------
-
-    Testing for innerHTML method on sample_inner_html_complex.html showed:
-
-        5ms for layout, 5ms for paint
-
-    fastFrag showed:
-
-        4ms for layout, 1ms for paint. 
-
-    Graphs and data to come, you can run your own tests by loading the HTML files found in samples/ folder. 
-
-    I am highly skeptical that any JS template library would be faster than a simple string and inner HTML across the variety of browsers on the market: Chrome, Safari Internet Explorer. 
-
-    However, it is impossible to deny the expense incurred to escape data when using inner HTML methods directly, or risk possible serious attacks to your website if you accept any user-content. When comparing both the speed of inner HTML and it's absolute need for regular expressions to attempt and catch anything *dangerous*, with fastFrag, fastFrag has so far demonstrated itself to be faster, but again graphs to come as soon as possible. If you have found otherwise, please tell us about it here, <http://github.com/gregory80/fastFrag/issues>
+    Try out these examples, or any fastFrag examples at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4) JavaScript is much more forgiving in this manner, consider this URL ultra-strict
     
     
 
