@@ -328,7 +328,12 @@ FAQ
         }
         
         
-    Try out these examples, or any fastFrag examples at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4) JavaScript is much more forgiving in this manner, consider this URL ultra-strict
+    Try out these examples, or any fastFrag examples at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4) JavaScript is much more forgiving in this manner, consider this URL ultra-strict. 
+    
+    If you were to try the following, via jQuery, your page will be __pwned__
+     
+        
+        $('body').html('<script>alert("pnwed");</script>');
     
     
 
