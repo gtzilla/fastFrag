@@ -49,3 +49,20 @@ More Tests:
     </div>
     <div class="same_as_level2">whatvet text here</div>
 </div>
+
+
+
+
+
+--------
+ERROR: Images and Text
+----------
+<div id="ns_0C8D6B9RJ1ZAAZVH2XV4_709_TitleContainer0" class="s9hl" style="position: relative; height: 202px; "><div id="ns_0C8D6B9RJ1ZAAZVH2XV4_709_Title0"><span id="ns_0C8D6B9RJ1ZAAZVH2XV4_709_ImageContainer0" style="height: 135px; "><a href="http://www.amazon.com/gp/product/B003P79GOQ/ref=s9_simh_co_p340_d11_i1?pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_s=left-1&amp;pf_rd_r=0C8D6B9RJ1ZAAZVH2XV4&amp;pf_rd_t=3201&amp;pf_rd_p=1263271162&amp;pf_rd_i=typ01" class="title ntTitle noLinkDecoration" title="Rill Rill"><div class="imageContainer"><img src="https://images-na.ssl-images-amazon.com/images/I/51FvmKX2JQL._SL135_.jpg" alt="" width="135" height="135" id="ns_0C8D6B9RJ1ZAAZVH2XV4_709_Image0"></div>Rill Rill
+</a></span>
+
+<div class="t11">Sleigh Bells</div><div class="gry t11 nt">MP3 Download</div>
+
+
+
+<span class="red t14">$0.99</span>
+</div></div>

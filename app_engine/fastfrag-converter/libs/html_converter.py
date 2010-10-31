@@ -87,34 +87,29 @@ class FastFragHTMLParser(HTMLParser):
         if data and data.strip() != "":
             ## add 'text' as an object (dict), 
             ## this is not requrired, could just be a string, make it easier on the parser
+            
+            ## TODO
+            ## Known error: see notes_python_converstion.text ERROR: Images and Text
             text_data_dict = { 'text' : data }
             if not self.active_frag:
-                logging.info("broken? %s" % text_data_dict)
-                self.active_frag = text_data_dict
-                return
-            
-            elif type(self.active_frag) == list:
-                curr_node = self.active_frag[ len(self.active_frag) -1 ]
-                logging.info("it's a dict %s and weird %s" % (curr_node,text_data_dict) )                
-                if type(curr_node) == dict:
-                    logging.info("it's a dict %s" % text_data_dict )
-                    self.active_frag[ len(self.active_frag) -1 ]['content'] = text_data_dict
-                elif type(curr_node) == list:
-                    logging.info("it's a list %s" % text_data_dict  )                    
-                    self.active_frag[ len(self.active_frag) -1 ].append( text_data_dict )
-
-            elif self.active_frag.get('content'):
-                curr_content = self.active_frag.get('content')
-                if type(curr_content) == dict:
-                    self.active_frag['content'] = [curr_content, text_data_dict]
-                elif type(curr_content) == list:
-                    logging.info("this is the item %s" % text_data_dict )
-                    self.active_frag.get('content')[len(curr_content)-1]['content'] = text_data_dict
-                else:
-                    logging.warn("oops, the data node is node getting added right")
+                 logging.info("broken? %s" % text_data_dict)
+                 self.active_frag = text_data_dict  
             else:
-                logging.info("overright ? %s" % text_data_dict)                
-                self.active_frag['content'] = text_data_dict
+                try:
+                    curr_node = self.active_frag.get('content')
+                except:
+                    curr_node=self.active_frag
+                
+                if type(curr_node) == dict:
+                    if curr_node.get('text'):
+                        curr_node=text_data_dict
+                    else:
+                        curr_node=[ self.active_frag.get('content'), text_data_dict ]
+                elif type(curr_node) == list:
+                    curr_node[len(curr_node)-1]['content']=text_data_dict
+                else:
+                    self.active_frag['content']=text_data_dict
+                          
     
     def handle_starttag(self, tag, attrs):
         
