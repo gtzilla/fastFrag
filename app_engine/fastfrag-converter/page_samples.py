@@ -2,6 +2,9 @@
 
 page_samples = {
 
+    'hello_world' : """{
+        "content" : "hello world"
+    }""",
     
     'two_children' : """{
         "css" : "a_class_name",
