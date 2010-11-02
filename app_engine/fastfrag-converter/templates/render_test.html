@@ -28,7 +28,7 @@
 
 <div id="bottom" class="bottom_redisplay">
 
-    <div>
+    <div class="fragged_display_box">
         <form action="" method="post" accept-charset="utf-8">
             
             <div>
@@ -61,7 +61,7 @@
     $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
 
     $(function() {
-        sample_frags.init( '#bottom', {{json_encode(samples)}}   );
+        sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
     });
 
 

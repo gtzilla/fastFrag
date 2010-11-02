@@ -131,7 +131,7 @@ Get more complex with with nested elements:
     fastFrag.create({
         css : "a_class_name",
         content : [{
-            type : "a"
+            type : "a",
             content : "child one",
             attrs : {
                 href : "http://whatever.com"

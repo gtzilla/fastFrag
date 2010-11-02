@@ -28,6 +28,7 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
     padding:20px;                
     background:#ccc;  
     margin-bottom:25px;  
+
 }
 #bottom {
     margin-bottom:80px;
@@ -37,6 +38,15 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
     padding-right:15px;
 }
 
+.fragged_display_box {
+    position:relative;
+}
+
+#samples_list {
+    position:absolute;
+    right:15px;
+    bottom:5px;    
+}
 
 body {
     background:#3d3d3d;

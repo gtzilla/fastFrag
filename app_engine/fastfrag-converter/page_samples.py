@@ -2,7 +2,42 @@
 
 page_samples = {
 
-    'user_injection_attack' : """{
+    
+    'two_children' : """{
+        "css" : "a_class_name",
+        "content" : [{
+            "type" : "a",
+            "content" : "child one",
+            "attrs" : {
+                "href" : "http://whatever.com"
+            }
+        }, {
+            "content" : "child two"
+        }]
+    }""",
+    
+    
+    'link_sample' : """{
+        "css" : "mainClass",
+        "content" : [{
+            "type" : "a",
+            "content" : "fastFrag Repo",
+            "attrs" : {
+                "href" : "http://github.com/gregory80/fastFrag"
+            }
+        },{
+            "text" : " | "
+        },{
+            "type" : "a",
+            "content" : "converter home",
+            "attrs" : {
+                "href" : "/"
+            }
+        }]
+    }""",    
+    
+
+    'script_injection_attack' : """{
         "content": [{
             "attrs": {
                 "href": "/"
@@ -37,7 +72,7 @@ page_samples = {
         "id": "my_id"
     }""",
     
-    'basic_sample' : """{
+    'link_sample' : """{
         "css" : "mainClass",
         "content" : [{
             "type" : "a",
@@ -54,6 +89,7 @@ page_samples = {
                 "href" : "/"
             }
         }]
-    }"""
+    }""",
+
 
 }
