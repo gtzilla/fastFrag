@@ -168,7 +168,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
         css : "mainClass",
         content : [{
             type : "a",
-            content : "fastFrag Repo"
+            content : "fastFrag Repo",
             attrs : {
                 href : "http://github.com/gregory80/fastFrag"
             }
@@ -176,7 +176,7 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr a
             text : " | "
         },{
             type : "a",
-            content : "link two"
+            content : "link two",
             attrs : {
                 href : "#"
             }

@@ -56,8 +56,19 @@
 {% block javascript %}
 
 <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/js/sample_frags.js"></script>
 <script type="text/javascript" id="fragData" charset="utf-8">
     $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
+
+    $(function() {
+        sample_frags.init( '#bottom', {{json_encode(samples)}}   );
+    });
+
+
+
+
+    
+    
 </script>
 
 {% end %}

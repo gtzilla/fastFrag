@@ -1,3 +1,16 @@
 {% extends base.html %}
 
 <!-- the base has everything we want for this page... -->
+
+
+{% block javascript %}
+<script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/js/sample_frags.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        sample_frags.init( '#middle', {{json_encode(samples)}}   );
+    });
+
+</script>
+
+{% end %}

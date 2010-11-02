@@ -12,6 +12,8 @@ import os
 import tornado.web
 import tornado.wsgi
 import unicodedata
+import logging
+import tornado.escape
 
 import wsgiref.handlers
 import logging
@@ -22,14 +24,33 @@ except:
 
 import libs.html_converter
 
+from page_samples import page_samples
+
 
 
 class BaseHandler( tornado.web.RequestHandler  ):
     
+    
+    @property
+    def frag_samples(self):
+        frag_samples={}
+        for k in page_samples:
+            try:
+                json_data = json.loads( page_samples[k] )
+                frag_samples[k] = [json_data, page_samples[k] ]
+            except:
+                logging.warn("bad json?? %s" % page_samples[k] )
+                continue                
+                pass
+        
+        logging.info(frag_samples)
+        return frag_samples
+
+
     @property
     def sample_html(self):
         return """<div id="my_id" class="my_class"><a href="/" class="my_class">fastFrag HTML => JSON</a></div>"""
-    
+        
     def process_html_string(self, html_string, pretty_print=True):
         try:
             parser = libs.html_converter.FastFragHTMLParser()
@@ -43,17 +64,17 @@ class BaseHandler( tornado.web.RequestHandler  ):
         return string_out
     
     def output_page(self, frag_string):
-        self.render("output.html", data_output=frag_string, error=False)
+        self.render("output.html", data_output=frag_string, samples=self.frag_samples, error=False)
     
     def _test_frag_output(self, frag_json_string):
         try:
             json_frag = json.loads(frag_json_string)
         except:
             logging.info("error, not json?")
-            self.render("output.html", data_output=frag_json_string, error=True)
+            self.render("output.html", data_output=frag_json_string, samples=self.frag_samples, error=True)
             return
         
-        self.render("render_test.html", frag_test_data=json_frag, data_output=frag_json_string )
+        self.render("render_test.html", frag_test_data=json_frag, samples=self.frag_samples, data_output=frag_json_string )
 
 
     ##
@@ -74,6 +95,7 @@ class BaseHandler( tornado.web.RequestHandler  ):
         if 'chromeframe' in self.request.headers.get('User-Agent', []):
             self.set_header("X-UA-Compatible","chrome=1")
         return super(BaseHandler, self).render(*args, **new_kwargs)
+
 
 
 class MainHandler(BaseHandler):
