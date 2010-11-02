@@ -1,12 +1,35 @@
 {% extends base.html %}
 
+{% block top_note %} 
+    <!-- 
+        Page following POST request
+    -->
+
+ {% end %}
+
+{% block page_title %}fastFrag JSON{% end %}
+
 <!-- the base has everything we want for this page... -->
+
+{% block top_content %}
+<div id="top_test">
+    <div class="meta">    
+        <div class="pretty_print_box">
+            <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a>
+            </div>
+        <h1 id="html_to_convert"><a href="http://github.com/gregory80/fastFrag">fastFrag JSON</a></h1>
+
+        <p>fastFrag JSON structure below. <a href="/">fastFrag HTML => JSON</a> another or try <a href="/frag">fastFrag JSON examples</a> </p>                    
+    </div>
+</div>
+
+{% end %}
 
 
 {% block javascript %}
 <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/static/js/sample_frags.js"></script>
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8" id="fast_frag_json_samples">
     $(function() {
         sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
     });

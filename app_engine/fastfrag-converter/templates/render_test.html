@@ -1,16 +1,23 @@
 {% extends base.html %}
 
 
+{% block top_note %} 
+    <!-- 
+        Page following POST request
+    -->
+
+ {% end %}
+
 
 {% block top_content %}
 
 <div id="top_test">
     <div class="meta">
-       
-        <h1 id="html_to_convert">fastFrag JSON Test</h1>
         <div class="pretty_print_box">
-            <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
-            </div>                    
+            <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a>
+            </div>       
+        <h1 id="html_to_convert">fastFrag JSON Test</h1>
+
         <p>Test fastFrag appended to element with id:middle below. Learn more about <a href="http://github.com/gregory80/fastFrag" target="_blank">fastFrag on github</a>. Or, <a href="/">fastFrag HTML => JSON</a> another.</p>                    
 
     </div>                
@@ -58,17 +65,20 @@
 <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/static/js/sample_frags.js"></script>
 <script type="text/javascript" id="fragData" charset="utf-8">
-    $('#middle').append( fastFrag.create({{json_encode( frag_test_data  )}}) );
+    // create fastFrag and append to DOM node at middle
+    // sample syntax: fastFrag.create();
+    // hello world example: fastFrag.create( { "content" : "hello world" }  );
+    $('#middle').append( fastFrag.create( {{json_encode( frag_test_data  )}}) );
+    // end fastFrag append
 
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    // draw and display samples dropdown
     $(function() {
         sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
     });
-
-
-
-
-    
-    
+    // end    
 </script>
 
 {% end %}

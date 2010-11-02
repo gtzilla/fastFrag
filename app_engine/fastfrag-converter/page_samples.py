@@ -4,7 +4,7 @@ page_samples = {
 
     'hello_world' : """{
         "content" : "hello world"
-    }""",
+}""",
     
     'two_children' : """{
         "css" : "a_class_name",
@@ -17,8 +17,13 @@ page_samples = {
         }, {
             "content" : "child two"
         }]
-    }""",
+}""",
     
+    'basic_paragraph' : """{
+        "type" : "p",
+        "css" : "a_class_name",
+        "content" : "this is a paragraph"
+}""",
     
     'link_sample' : """{
         "css" : "mainClass",
@@ -37,7 +42,7 @@ page_samples = {
                 "href" : "/"
             }
         }]
-    }""",    
+}""",    
     
 
     'script_injection_attack' : """{
@@ -55,7 +60,7 @@ page_samples = {
         }], 
         "css": "my_class", 
         "id": "my_id"
-    }""",
+}""",
     
     'user_script_execute' : """{
         "content": [{
@@ -73,7 +78,7 @@ page_samples = {
         }], 
         "css": "my_class", 
         "id": "my_id"
-    }""",
+}""",
     
     'link_sample' : """{
         "css" : "mainClass",
@@ -92,7 +97,7 @@ page_samples = {
                 "href" : "/"
             }
         }]
-    }""",
+}""",
 
 
 }

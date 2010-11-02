@@ -36,6 +36,7 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
 .pretty_print_box {
     float:right;
     padding-right:15px;
+    padding-top:10px;
 }
 
 .fragged_display_box {
@@ -43,9 +44,12 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
 }
 
 #samples_list {
-    position:absolute;
+/*    position:absolute;
     right:15px;
-    bottom:5px;    
+    bottom:5px;  */  
+    float:right;
+    margin-right:15px;
+    margin-bottom:10px;
 }
 
 body {

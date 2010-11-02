@@ -6,7 +6,22 @@
     author: gregory tomlinson
 -->
 
-<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+{% block top_note %}
+<!-- 
+
+    Attention: This is the GET request output for json.fastfrag.org If you are trying to read the source of the page following a POST request (anytime you press a submit buttom), this (GET) source will not match the (POST) source code. You need to check the rendered source. 
+    
+    This may seem 'annoying' but in order to check that fastFrag.js has executed correctly, you will always have to check the rendered source of the page, since it is JavaScript.
+    
+    If you are new to JavaScript, there are many tools for checking the rendered source, including the 'elements' inspector in Google Chrome and it's counterpart in FireFox Firebug. Safari and Internet Explorer also have tools for doing this as well.
+    
+    In essence, in Google Chrome and many other browsers, view-source:http://example.com is actually making a new GET request to the page. The output and processing in this application is done on a POST request, hence causing a mismatch.
+    
+    This is a really long way of saying, What you see is not what you get in the regular view source.
+
+-->
+{% end %}
+
     <head>
         <title>{% block page_title %}fastFrag HTML=> JSON Converter{% end %}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,16 +51,7 @@
             {% block middle_content %}
             <div id="middle">
 
-                <div class="meta">
-                    
-                    <h1 id="html_to_convert"><a href="http://github.com/gregory80/fastFrag">fastFrag JSON</a></h1>
-                    <div class="pretty_print_box">
-                        <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a></li>
-                        </div>                    
-                    <p>fastFrag JSON structure below. Or, <a href="/">fastFrag HTML => JSON</a> another</p>                    
-                    
-                    
-                </div>
+
                 {% if error %}
                 <p>Oops, looks like that isn't valid JSON. Did you change it? Or did we screw up? Tell us <a href="http://github.com/gregory80/fastFrag/issues" target="_blank">here</a> if we did.</p>
                 {% end %}
@@ -86,8 +92,12 @@
             
         </div> <!-- end #container -->
     
-        
+        <script type="text/javascript" charset="utf-8">
+        if(!window.console) window.console={};
+        if(!window.console.log) window.console.log = function(){};            
+        </script>        
         <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
         
         {% block javascript %}{% end %}
         

@@ -15,6 +15,7 @@ import unicodedata
 import logging
 import tornado.escape
 
+
 import wsgiref.handlers
 import logging
 try:
@@ -27,9 +28,7 @@ import libs.html_converter
 from page_samples import page_samples
 
 
-
 class BaseHandler( tornado.web.RequestHandler  ):
-    
     
     @property
     def frag_samples(self):
@@ -77,9 +76,9 @@ class BaseHandler( tornado.web.RequestHandler  ):
         self.render("render_test.html", frag_test_data=json_frag, samples=self.frag_samples, data_output=frag_json_string )
 
 
-    ##
     def get_render_args(self):
         return {
+        
         }
             
     def render(self, *args, **kwargs):
