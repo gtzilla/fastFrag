@@ -216,6 +216,10 @@ FAQ
         
     For example, JavaScript would be fine with { content : "some data" }, but python gets fussy and wants it to be { "content" : "some data" }. This is only relevant to the testing mechanism via <http://json.fastfrag.org/frag>
 
+* How do I find people using this or available to answer questions.
+
+    There are currently 4 options for contacting people. There is now a listserv <fastfrag@librelist.com>, as well as [github issues](http://github.com/gregory80/fastFrag/issues). Additionally there is an IRC room on freenode.net #fastfrag or you can [email the team](mailto:info@fastfrag.org) info <at> fastfrag <dot> org.
+        
 
 * How do I use this with other libraries?
 
