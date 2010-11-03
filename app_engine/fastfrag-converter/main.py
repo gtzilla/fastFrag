@@ -15,7 +15,6 @@ import unicodedata
 import logging
 import tornado.escape
 
-
 import wsgiref.handlers
 import logging
 try:
@@ -59,18 +58,19 @@ class BaseHandler( tornado.web.RequestHandler  ):
         except Exception,msg:
             string_out=""
             logging.exception("max recursion depth error?! %s " % msg)
-        
         return string_out
     
-    def output_page(self, frag_string):
-        self.render("output.html", data_output=frag_string, samples=self.frag_samples, error=False)
+    def output_page(self, frag_string, method_type="get", error=False):
+        
+        self.render("output.html", data_output=frag_string, method_type=method_type, samples=self.frag_samples, error=error)
     
     def _test_frag_output(self, frag_json_string):
         try:
+            
             json_frag = json.loads(frag_json_string)
         except:
             logging.info("error, not json?")
-            self.render("output.html", data_output=frag_json_string, samples=self.frag_samples, error=True)
+            self.output_page( "frag_json_string", error=True, method_type="post" )
             return
         
         self.render("render_test.html", frag_test_data=json_frag, samples=self.frag_samples, data_output=frag_json_string )
@@ -147,6 +147,7 @@ class MainHandler(BaseHandler):
 class FragJSONTestHandler(BaseHandler):
     
     def get(self):
+        
         self.output_page("")
         
     def post(self):
@@ -171,7 +172,6 @@ class FragHandler(BaseHandler):
             raise tornado.web.HTTPError(404)
 
 
-##
 settings = {
     "blog_title": u"fastFrag",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),

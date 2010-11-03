@@ -1,11 +1,34 @@
 {% extends base.html %}
 
-{% block top_note %} 
+
+{% block top_note %}
+    {% if method_type == "post" %}
+    <!-- check works  -->
+
+
+    {% else %}
+
+
     <!-- 
-        Page following POST request
+
+        Attention: This is the GET request output for json.fastfrag.org If you are trying to read the source of the page following a POST request (anytime you press a submit buttom), this (GET) source will not match the (POST) source code. You need to check the rendered source. 
+    
+        This may seem 'annoying' but in order to check that fastFrag.js has executed correctly, you will always have to check the rendered source of the page, since it is JavaScript.
+    
+        If you are new to JavaScript, there are many tools for checking the rendered source, including the 'elements' inspector in Google Chrome and it's counterpart in FireFox Firebug. Safari and Internet Explorer also have tools for doing this as well.
+    
+        In essence, in Google Chrome and many other browsers, view-source:http://example.com is actually making a new GET request to the page. The output and processing in this application is done on a POST request, hence causing a mismatch.
+    
+        This is a really long way of saying, What you see is not what you get in the regular view source.
+
     -->
 
- {% end %}
+    {% end %}
+
+{% end %}
+
+
+
 
 {% block page_title %}fastFrag JSON{% end %}
 
