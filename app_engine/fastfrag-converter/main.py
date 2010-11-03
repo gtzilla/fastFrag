@@ -43,7 +43,7 @@ class BaseHandler( tornado.web.RequestHandler  ):
         
         logging.info(frag_samples)
         return frag_samples
-
+    
     
     @property
     def sample_html(self):
@@ -74,7 +74,7 @@ class BaseHandler( tornado.web.RequestHandler  ):
             return
         
         self.render("render_test.html", frag_test_data=json_frag, samples=self.frag_samples, data_output=frag_json_string )
-
+    
     
     def get_render_args(self):
         return {
@@ -149,14 +149,14 @@ class FragJSONTestHandler(BaseHandler):
     def get(self):
         
         self.output_page("")
-        
+    
     
     def post(self):
         frag_text_output = self.get_argument("frag_text_output", None)
         if not frag_text_output:
             self.output_page("")
             return
-            
+        
         
         self._test_frag_output( frag_text_output )
 
