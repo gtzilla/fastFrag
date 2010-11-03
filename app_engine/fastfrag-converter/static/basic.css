@@ -43,6 +43,23 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
     position:relative;
 }
 
+
+.js_preview_box {
+    width:660px;
+    background:white;
+    overflow-x:auto;
+    padding:10px 15px;
+    margin:10px 0 10px 0;
+    display:none;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;    
+}
+.show_js_preview_button_box {
+    margin-top:10px;
+    text-align:right;
+}
+
 #samples_list {
 /*    position:absolute;
     right:15px;

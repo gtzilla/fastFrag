@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# 
+#
 #  main.py
 #  fastFrag
-#  
+#
 #  Created by gregory tomlinson.
 #  Original sample code from google applied to their app server, converted to tornado
-# 
+#
 
 import re
 import os
@@ -38,17 +38,17 @@ class BaseHandler( tornado.web.RequestHandler  ):
                 frag_samples[k] = [json_data, page_samples[k] ]
             except:
                 logging.warn("bad json?? %s" % page_samples[k] )
-                continue                
+                continue
                 pass
         
         logging.info(frag_samples)
         return frag_samples
 
-
+    
     @property
     def sample_html(self):
         return """<div id="my_id" class="my_class"><a href="/" class="my_class">fastFrag HTML => JSON</a></div>"""
-        
+    
     def process_html_string(self, html_string, pretty_print=True):
         try:
             parser = libs.html_converter.FastFragHTMLParser()
@@ -75,12 +75,12 @@ class BaseHandler( tornado.web.RequestHandler  ):
         
         self.render("render_test.html", frag_test_data=json_frag, samples=self.frag_samples, data_output=frag_json_string )
 
-
+    
     def get_render_args(self):
         return {
         
         }
-            
+    
     def render(self, *args, **kwargs):
         """ pass in extra values to templates
         an easy spot to set the X-UA-Compatible header if this is a html response """
@@ -142,7 +142,7 @@ class MainHandler(BaseHandler):
             logging.exception("error %s" % msg )
         
         self.output_page( string_out )
- 
+
 
 class FragJSONTestHandler(BaseHandler):
     
@@ -150,13 +150,15 @@ class FragJSONTestHandler(BaseHandler):
         
         self.output_page("")
         
+    
     def post(self):
-        frag_text_output = self.get_argument("frag_text_output", None)        
+        frag_text_output = self.get_argument("frag_text_output", None)
         if not frag_text_output:
             self.output_page("")
             return
+            
+        
         self._test_frag_output( frag_text_output )
-
 
 class FragHandler(BaseHandler):
     
@@ -180,7 +182,7 @@ settings = {
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
-    (r"/frag", FragJSONTestHandler),    
+    (r"/frag", FragJSONTestHandler),
     (r"/rad/(.*)", FragHandler),
 ], **settings)
 

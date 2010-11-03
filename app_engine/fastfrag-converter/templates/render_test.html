@@ -27,7 +27,22 @@
 {% end %}
 
 {% block middle_content %}
-<div id="middle"></div>
+<div id="middle">
+    <div>
+        <div class="show_js_preview_button_box">
+            <a href="#">show js code</a>
+        </div>
+        <div id="show_js_code">
+            <div class="js_preview_box">
+                <pre>
+$('#middle').prepend( fastFrag.create( {{ escape(json_encode( frag_test_data  ) ) }}) );
+                </pre>                
+            </div>
+        </div>        
+    </div>
+
+    
+</div>
 {% end %}
 
 
@@ -68,7 +83,7 @@
     // create fastFrag and append to DOM node at middle
     // sample syntax: fastFrag.create();
     // hello world example: fastFrag.create( { "content" : "hello world" }  );
-    $('#middle').append( fastFrag.create( {{json_encode( frag_test_data  )}}) );
+    $('#middle').prepend( fastFrag.create( {{json_encode( frag_test_data  )}}) );
     // end fastFrag append
 
 </script>
@@ -78,6 +93,20 @@
     $(function() {
         sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
     });
+    
+    $(function(){
+        
+        $('.show_js_preview_button_box').find("a").toggle(function(e) {
+            e.preventDefault();
+            $('.js_preview_box').css("display", "block");
+            $(this).html('hide js code');
+        }, function(e) {
+            e.preventDefault();
+            $('.js_preview_box').css("display", "none");            
+            $(this).html('show js code');            
+        })
+    })
+
     // end    
 </script>
 
