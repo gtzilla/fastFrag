@@ -286,7 +286,7 @@ FAQ
     
         <script>alert('pwned');</script>
     
-    In the second case, we explicitly ask for our node type to be a **script**, which is then executed appropriately. Try out these examples by copy and pasting the below JSON frags to <http://json.fastfrag.org/frag>
+    In the second case, we explicitly ask for our node type to be a **script**, which is then executed appropriately. Try out these examples by copy and pasting the below JSON frags to <http://json.fastfrag.org/frag> Or, select 'script_injection_attack' and 'user_script_execute', respectively, from the pull down menu on  <http://json.fastfrag.org/frag>
     
         
         // malicious content injected by user:
