@@ -210,15 +210,15 @@ FAQ
     There are additional options to -s (a string), including -f (a file) or -r the URL or a remote source. Suggestions and improvements are welcome. Currently setup for python 2.6. 
 
 
-* How can I easily Test fastFrag structures.
+* How can I easily Test fastFrag structures?
 
     Try out any fastFrag structures directly at <http://json.fastfrag.org/frag>. Please be aware, Python is sensitive about attribute key quoting, [working on a fix](http://github.com/gregory80/fastFrag/issues/issue/4), JavaScript is much more forgiving in this manner, consider this URL ultra-strict.
         
     For example, JavaScript would be fine with { content : "some data" }, but python gets fussy and wants it to be { "content" : "some data" }. This is only relevant to the testing mechanism via <http://json.fastfrag.org/frag>
 
-* How do I find people using this or available to answer questions.
+* How do I find people using this, or people who are available to answer questions?
 
-    There are currently 4 options for contacting people. There is now a listserv <fastfrag@librelist.com>, as well as [github issues](http://github.com/gregory80/fastFrag/issues). Additionally there is an IRC room on freenode.net #fastfrag or you can [email the team](mailto:info@fastfrag.org) info <at> fastfrag <dot> org.
+    There are currently 4 options for contacting people involved with fastFrag.js. There is now a listserv <fastfrag@librelist.com>, as well as [github issues](http://github.com/gregory80/fastFrag/issues). Additionally there is an IRC room on freenode.net #fastfrag or you can [email the team](mailto:info@fastfrag.org) info <at> fastfrag <dot> org.
         
 
 * How do I use this with other libraries?
@@ -228,7 +228,7 @@ FAQ
         var fast_frag_response = fastFrag.create({ ... }) // pseudo code
         document.body.appendChild( fast_frag_response )
         
-    You could also easily use fastFrag with jQuery, for instance, you can append fastFrag results to an element widh id:someElement, using the following: 
+    You could also easily use fastFrag with jQuery, for instance, you can append fastFrag results to an element with id:someElement, using the following: 
         
         var fast_frag_response = fastFrag.create({ ... });
         $('#someElement').append( fast_frag_response )
@@ -375,9 +375,13 @@ fastFrag showed:
 
 Graphs and data to come, you can run your own tests by loading the HTML files found in samples/ folder. 
 
-I am highly skeptical that any JS template library would be faster than a simple string and inner HTML across the variety of browsers on the market: Chrome, Safari Internet Explorer. 
+I am highly skeptical that any JS template library would be faster than a simple string and inner HTML across the variety of browsers on the market: Chrome, Safari, FireFox, Internet Explorer etc. 
 
-However, it is impossible to deny the expense incurred to escape data when using inner HTML methods directly, or risk possible serious attacks to your website if you accept any user-content. When comparing both the speed of inner HTML and it's absolute need for regular expressions to attempt and catch anything *dangerous*, with fastFrag, fastFrag has so far demonstrated itself to be faster, but again graphs to come as soon as possible. If you have found otherwise, please tell us about it here, <http://github.com/gregory80/fastFrag/issues>
+However, it is impossible to deny the expense incurred to escape data when using inner HTML methods directly, or risk possible serious attacks to your website if you accept any user-content. 
+
+When comparing both the speed of inner HTML, and it's absolute need for regular expressions to attempt and catch anything *dangerous*, with fastFrag, fastFrag has so far demonstrated itself to be faster, but again graphs to come as soon as possible. 
+
+If you have found otherwise, please tell us about it here, <http://github.com/gregory80/fastFrag/issues>. If you're skilled in creating this type of graphical data and testing, __please__ contact me info < at > fastfrag < dot > org. I would love your help!
 
 
     
@@ -386,9 +390,9 @@ Benefits
 
 I find the primary benefit of fastFrag, over concatenated strings specifically, is the end of unbalanced 'divs' or other elements. Each element is properly closed. Any 'errors' in the JSON show up clearly with a line number, 'Unexpected Identifier' for example, which means a comma is missing. This makes debugging even the most complex HTML structures very, very fast.
 
-In addition, the speed benefits of the library have been shocking to me. After repeatedly finding 'innerHTML' to be fast in any environment, fastFrag beats that. I'm working on a stats chart and example to demonstrate this.
+In addition, the speed benefits of the library have been shocking to me. After repeatedly finding 'innerHTML' to be fast in any environment, fastFrag beats that. I'm working on a stats chart and example to demonstrate this. Again, if you're skilled in creating this type of graphical data and testing, __please__ contact me info < at > fastfrag < dot > org. I would love your help!
 
-fastFrag minimizes manipulation of the DOM api, which is generally considered to be 'slow'. fastFrag allows for infinitely complex JSON structures, that can be appended to the DOM in a single line of code. 
+fastFrag minimizes manipulation of the DOM API, which is generally considered to be *slow*. fastFrag allows for infinitely complex JSON structures, that can be appended to the DOM in a single line of code. This reduces the number of times the DOM is accessed. Updating the DOM require the browser to update its layout and paint events in order to display the new content.
     
     document.body.appendChild( fastFrag.create({ content : [...] }) );
     
@@ -456,7 +460,7 @@ Who's Using It?
 
 Currently, this project is limited to a handful of projects where I have been directly involved to some degree, for instance the bit.ly Chrome extension and fic.ly writes like as well as several projects I have yet to make public. See a list of my open projects [here on github](http://github.com/gregory80)
 
-If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastFrag/issues)! We will list your project and a link to the project homepage here. As well as a brief description, <fastfrag.org> has also been acquired and will feature people using the template. 
+If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastFrag/issues)! We will list your project and a link to the project homepage here. As well as a brief description, <fastfrag.org> has also been acquired and will feature people using the template, in the future.
 
 
 
