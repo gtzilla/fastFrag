@@ -13,12 +13,16 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
 .hr hr {
     display:none;
 }
+
+
+
 #top_test {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
     padding:20px;                
-    background:#ccc;
+    background:#ececec;
+    border:1px solid #ccc;
     margin-bottom:25px;    
 }
 #middle, .bottom_redisplay {
@@ -26,7 +30,8 @@ h1,h2,h3,h4,h5,h6,input,textarea,select,option, body {
     -moz-border-radius: 20px;
     border-radius: 20px;
     padding:20px;                
-    background:#ccc;  
+    background:#ececec;
+    border:1px solid #ccc;
     margin-bottom:25px;  
 
 }
