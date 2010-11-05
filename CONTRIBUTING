@@ -1,0 +1,25 @@
+fastFrag is UNLICENSED http://unlicense.org/
+
+If you would like your patch included please sign the WAIVER for any non-trivial patches. This is a sad reality of the modern legal concerns regarding copyright. But it's fairly quick and only applies to large or significant alterations  to the code base.
+
+Run: 
+
+gpg --no-version --armor --sign WAIVER
+
+
+More exact details can be found under: Unlicensing Contributions at http://unlicense.org/
+
+There are also explicit instructions on how other unlisence (public domain) projects handle this:
+
+http://lists.w3.org/Archives/Public/public-rdf-ruby/2010May/0013.html
+
+Finally, following the aforementioned links practices, contributions of less than 15 lines of code can be considered 'trivial', as per the following:
+
+    Also, I'll be following the FSF's rule of thumb [6] here, according to
+    which contributions totaling less than 15 lines of new code can safely
+    be considered "trivial" for legal purposes, in which case no waiver is
+    needed. Hence I've already previously merged e.g. a small patch [7]
+    from Pius, which fulfilled these criteria.
+
+[6] http://www.gnu.org/prep/maintain/maintain.html#Legally-Significant
+[7] http://github.com/bendiken/rdf/commit/fd9a7881c256e42df3a3e6b59b236de2f816cbf7

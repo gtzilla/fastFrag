@@ -35,7 +35,7 @@
         <div id="show_js_code">
             <div class="js_preview_box">
                 <pre>
-$('#middle').prepend( fastFrag.create( {{ escape(json_encode( frag_test_data  ) ) }}) );
+$('#middle').prepend( fastFrag.create( {{ escape( json_encode( frag_test_data  ) ) }}) );
                 </pre>                
             </div>
         </div>        
@@ -77,7 +77,7 @@ $('#middle').prepend( fastFrag.create( {{ escape(json_encode( frag_test_data  ) 
 
 {% block javascript %}
 
-<script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/js/fastFrag.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/static/js/sample_frags.js"></script>
 <script type="text/javascript" id="fragData" charset="utf-8">
     // create fastFrag and append to DOM node at middle
