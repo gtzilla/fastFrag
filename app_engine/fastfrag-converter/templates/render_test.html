@@ -15,11 +15,7 @@
 
 <div id="top_test">
     <div class="meta">
-        <div class="pretty_print_box">
-            <a target="_blank" href="http://fastfrag.org/post/4cd354958803a42ed3000000">Usage</a> ı
-            <a target="_blank" href="http://fastfrag.org/post/4cd35c898803a434fb000000">FAQ</a> ı            
-            <a target="_blank" href="http://github.com/gregory80/fastFrag/blob/master/README.md">About</a>
-            </div>       
+        {{modules.stat_mod( "top_nav" )}}     
         <h1 id="html_to_convert">fastFrag JSON Test</h1>
 
         <p>Test fastFrag prepended to element #middle (id="middle") below. <a href="/">fastFrag HTML => JSON</a> another, or <a href="/frag">test JSON Frag</a></p>                    
@@ -68,11 +64,7 @@ $('#middle').prepend( fastFrag.create( {{ escape( json_encode( frag_test_data  )
 
     </div>
     
-    <div class="meta">
-        <p>Learn more about <a target="_blank" href="http://github.com/gregory80/fastFrag">fastFrag on github</a></p> by <a href="http://twitter.com/gregory80" target="_blank">@gregory80</a>. Get <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js" target="_blank">fastFrag</a> or the minified source <a href="http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js" target="_blank">here</a>
-        
-        <p>Please note: you should download and keep a local copy, the master branch, linked above, is subject to change </p>
-    </div>                
+    {{modules.stat_mod( "footer" )}}
 
 </div> <!-- end #bottom -->
 
@@ -94,12 +86,10 @@ $('#middle').prepend( fastFrag.create( {{ escape( json_encode( frag_test_data  )
 
 <script type="text/javascript" charset="utf-8">
     // draw and display samples dropdown
-    $(function() {
-        sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
-    });
-    
     $(function(){
-        
+        // show / hide link for #middle div
+        sample_frags.init( '.fragged_display_box', {{json_encode(samples)}}   );
+                
         $('.show_js_preview_button_box').find("a").toggle(function(e) {
             e.preventDefault();
             $('.js_preview_box').css("display", "block");

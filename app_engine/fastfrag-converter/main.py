@@ -40,7 +40,6 @@ class BaseHandler( tornado.web.RequestHandler  ):
                 continue
                 pass
         
-        logging.info(frag_samples)
         return frag_samples
     
     
@@ -68,7 +67,6 @@ class BaseHandler( tornado.web.RequestHandler  ):
             
             json_frag = json.loads(frag_json_string)
         except:
-            logging.info("error, not json?")
             self.output_page( "frag_json_string", error=True, method_type="post" )
             return
         
@@ -118,7 +116,7 @@ class MainHandler(BaseHandler):
         else:
             pretty_print=True
         
-        logging.info("pretty print JSON is %s" % pretty_print)
+
         
         if sample_test:
             ## convert the sample
@@ -172,12 +170,19 @@ class FragHandler(BaseHandler):
             logging.warn("error rendering template %s" % msg)
             raise tornado.web.HTTPError(404)
 
+class GenericModuleLoader(tornado.web.UIModule):
+
+    def render(self, name):
+        if not name:
+            return ""
+            
+        return self.render_string("modules/%s.html" % name)
 
 settings = {
     "blog_title": u"fastFrag",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
-    # "ui_modules": {"Entry": EntryModule},
+    "ui_modules": {"stat_mod": GenericModuleLoader },
 }
 application = tornado.wsgi.WSGIApplication([
     (r"/", MainHandler),
