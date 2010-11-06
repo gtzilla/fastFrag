@@ -4,11 +4,11 @@
                 Turn JSON into HTML, http://github.com/gregory80/fastFrag
                 
             Usage: fastFrag.create( { content : "hello world" });
-            // creates: <div>hello world</div>
+            // creates Document Fragment: <div>hello world</div>
             
-            Learn more: http://github.com/gregory80/fastFrag/blob/master/README.md
+            Learn more: http://github.com/gregory80/fastFrag/blob/master/README.md or http://fastfrag.org
             
-            Convert HTML to fastFrag (fast!): http://fastfrag-converter.appspot.com/
+            Convert HTML to fastFrag (fast!): http://json.fastfrag.org/
     */
 
     var fastFrag = {
