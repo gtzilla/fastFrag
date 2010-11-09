@@ -65,25 +65,13 @@ class FastFragHTMLParser(HTMLParser):
         ## just move the node counter
         
         self.node_depth-=1
-        # self.close_counter=-1
-        # def close_lookup( start_el ):
-        #     
-        #     self.close_counter+=1
-        #     ## correct location: add frag, adjust existing location as needed
-        #     ## dict -> list, append 'new' (frag_el) item
-        #     if self.close_counter == self.node_depth:
-        #         self.active_frag=start_el
-        #     else:
-        #         # crawl, go deeper and deeper
-        #         parent_node,next_el=self._crawler_deeper( start_el )
-        #                         
-        #         ## recurse
-        #         close_lookup( next_el )
-        #     # return start_el
-        # close_lookup( self.fragList )        
+     
     
     
     def handle_data(self,data):
+        """this bug: https://github.com/gregory80/fastFrag/issues/#issue/3
+        seems to be related to 'data' being triggered, but the active frag is not in the correct location
+        """
         if data and data.strip() != "":
             ## add 'text' as an object (dict), 
             ## this is not requrired, could just be a string, make it easier on the parser
@@ -103,24 +91,7 @@ class FastFragHTMLParser(HTMLParser):
                 logging.info("it's a list %s and %s " % (data,curr_node) )
             elif not curr_node:    
                 self.active_frag['content']=text_data_dict
-            # if not self.active_frag:
-            #      logging.info("broken? %s" % text_data_dict)
-            #      self.active_frag = text_data_dict  
-            # else:
-            #     try:
-            #         curr_node = self.active_frag.get('content')
-            #     except:
-            #         curr_node=self.active_frag
-            #     
-            #     if type(curr_node) == dict:
-            #         if not curr_node.get('text'):
-            #             curr_node=text_data_dict
-            #         else:
-            #             curr_node=[ self.active_frag.get('content'), text_data_dict ]
-            #     elif type(curr_node) == list:
-            #         curr_node[len(curr_node)-1]['content']=text_data_dict
-            #     else:
-            #         self.active_frag['content']=text_data_dict
+
                           
     
     def handle_starttag(self, tag, attrs):

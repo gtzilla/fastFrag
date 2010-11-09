@@ -58,6 +58,12 @@ class BaseHandler( tornado.web.RequestHandler  ):
             logging.exception("max recursion depth error?! %s " % msg)
         return string_out
     
+    def convert_fastFrag( self ):
+        
+        ## turn JSON into HTML... a string I suppose and output
+        pass
+        
+    
     def output_page(self, frag_string, method_type="get", error=False):
         
         self.render("output.html", data_output=frag_string, method_type=method_type, samples=self.frag_samples, error=error)
