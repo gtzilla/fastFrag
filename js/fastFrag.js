@@ -13,27 +13,31 @@
 
     var fastFrag = {
         create : function( params ) {
+            base_frag=null;
             return assembleHTML(params);
         },
-        version : "1.1.1.01"
+        version : "1.1.2"
 
     };
     window.fastFrag = fastFrag;
 
-    var d = document;
+    var d = document, base_frag=null;
 
     function assembleHTML( params ) {
-        var frag = d.createDocumentFragment(), k, el;
+        if(!base_frag) { base_frag = d.createDocumentFragment(); }
+        var k, el, sub_frag;
         if(params && params.length === undefined) {
             el = _singleNode( params );
-            frag.appendChild( el );
+            base_frag.appendChild( el );
         } else {
+            var sub_frag=d.createDocumentFragment();
             for(k in params) {
                 el = _singleNode( params[k] );
-                frag.appendChild( el );
+                sub_frag.appendChild( el );
             }
+            return sub_frag;
         }
-        return frag;
+        return base_frag;
     }
 
     // helpers
@@ -48,8 +52,6 @@
                 el.appendChild( txt );                        
             } catch(e){}
         }
-        
-        //if(el){ frag.appendChild(el); }
         return el;
     }
     function _mke_attribute( el, attrs ) {
@@ -58,7 +60,6 @@
             if(k === "disabled" && !attrs[k]) { continue; }
             el.setAttribute(k, _safe( attrs[k] ) );                                         
         }
-        return el;
     }
     function _make_element( o ) {
         var el_name, el;
@@ -86,7 +87,7 @@
     }
     // short cut / conveince methods
     function _mke(elem) {
-        return document.createElement( elem );
+        return d.createElement( elem );
     }    
     function _safe( string ) {
         return (d.createTextNode(string).nodeValue).toString();  // put in a text node, then grab it
