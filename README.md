@@ -296,6 +296,10 @@ For more information, please refer to http://unlicense.org/
 Changelog
 -------
 
+
+1.1.1.01
+remove extra (uneeded dom frag creation)
+
 1.1.1
 Rename functions, re-organize file, group method types
 

@@ -15,7 +15,7 @@
         create : function( params ) {
             return assembleHTML(params);
         },
-        version : "1.1.1"
+        version : "1.1.1.01"
 
     };
     window.fastFrag = fastFrag;
@@ -38,7 +38,7 @@
 
     // helpers
     function _singleNode( o ) {
-        var frag = d.createDocumentFragment(), el, txt;
+        var el, txt;
         if( o.text !== undefined ) {
             el = d.createTextNode( o.text || "" );
         } else {
@@ -49,11 +49,10 @@
             } catch(e){}
         }
         
-        if(el){ frag.appendChild(el); }
-        return frag;
+        //if(el){ frag.appendChild(el); }
+        return el;
     }
     function _mke_attribute( el, attrs ) {
-        var safe_value;
         for(var k in attrs) { 
             // yuck, setting disabled to false or none still breaks browsers, skip it instead
             if(k === "disabled" && !attrs[k]) { continue; }

@@ -1,0 +1,85 @@
+
+<html> 
+
+<!-- via @dankantor -->
+	<head> 
+		<title>fast</title> 
+		<style type="text/css"> 
+			#left {
+				float: left;
+				margin-right: 200px;
+			}
+			#right {
+				float: left;
+				margin-right: 200px;
+			}
+			#fast {
+				float: left;
+				margin-right: 200px;
+			}
+		</style> 
+		<script type="text/javascript" src="../js/fastFrag.js"></script> 
+		<script type="text/javascript"> 
+			function left(){
+				setTimeout(lef, 1);
+			}
+			function lef(){
+				console.time('left');
+				var left = document.getElementById('left');
+				var p = document.createElement('div');
+				var d;
+				for (var i = 0; i < 100000; i++){
+					d = document.createElement('div');
+					d.appendChild(document.createTextNode('foo'+i));
+					p.appendChild(d);
+				}
+				left.appendChild(p);
+				console.timeEnd('left')
+			}
+			function right(){
+				console.time('right');
+				var right = document.getElementById('right');
+				html = "<div>";
+				for (var i = 0; i < 100000; i++){
+					html += "<div>foo"+i+"</div>";
+				}
+				html += "</div>";
+				right.innerHTML = html;
+				console.timeEnd('right')
+			}
+			function empty(){
+				document.body.removeChild(document.getElementById('left'));
+				//document.getElementById('left').innerHTML = "";
+				document.getElementById('right').innerHTML = "";
+				document.getElementById('fast').innerHTML = "";
+			}
+			function fast(){
+				var structure_items = [];
+				for (var i = 0; i < 100000; i++){
+					structure_items.push({
+						content : 'foo'+i
+	                });
+                }
+                console.time('fast');
+				var structure = {
+                    content : structure_items
+                }
+                
+                var fast_doc_frag = fastFrag.create( structure );
+                document.getElementById('fast').appendChild( fast_doc_frag );
+                structure_items = null;
+                fast_doc_frag=null
+                console.timeEnd('fast');
+			}
+		</script> 
+	</head> 
+	<body> 
+		<div onclick="left()">Create Elements</div> 
+		<div onclick="right()">InnerHTML</div> 
+		<div onclick="fast()">FastFrag</div> 
+		<div onclick="empty()">empty</div> 
+		<div id="left"></div> 
+		<div id="right"></div> 
+		<div id="fast"></div> 
+	</body> 
+</html>
