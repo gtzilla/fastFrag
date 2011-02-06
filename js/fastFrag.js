@@ -13,10 +13,10 @@
 
     var fastFrag = {
         create : function( params ) {
-            base_frag=null;
+            base_frag=d.createDocumentFragment();
             return assembleHTML(params);
         },
-        version : "1.1.2"
+        version : "1.1.2.2"
 
     };
     window.fastFrag = fastFrag;
@@ -24,13 +24,12 @@
     var d = document, base_frag=null;
 
     function assembleHTML( params ) {
-        if(!base_frag) { base_frag = d.createDocumentFragment(); }
-        var k, el, sub_frag;
+        var el;
         if(params && params.length === undefined) {
             el = _singleNode( params );
             base_frag.appendChild( el );
         } else {
-            var sub_frag=d.createDocumentFragment();
+            var sub_frag=d.createDocumentFragment(), k;
             for(k in params) {
                 el = _singleNode( params[k] );
                 sub_frag.appendChild( el );
@@ -90,7 +89,10 @@
         return d.createElement( elem );
     }    
     function _safe( string ) {
-        return (d.createTextNode(string).nodeValue).toString();  // put in a text node, then grab it
+        var txt_node=d.createTextNode(string);
+        var txt=(txt_node.nodeValue).toString();  // put in a text node, then grab it
+        txt_node=null
+        return txt;
     }    
 
 })();
