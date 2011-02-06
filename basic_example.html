@@ -45,7 +45,7 @@ var structure = {
     }
 }
 
-var fast_doc_frag = fastFrag.create( structure );
+var fast_doc_frag = fastFrag.create( structure ); // transform from JSON to Dom Fragment
 document.getElementById('middle').appendChild( fast_doc_frag );
                 </pre>
             </div> <!-- end #bottom -->
@@ -55,6 +55,7 @@ document.getElementById('middle').appendChild( fast_doc_frag );
         
             <script type="text/javascript" src="js/fastFrag.js"></script>
             <script type="text/javascript" charset="utf-8">
+                // the actual fastFrag structure, as rendered via JS
                 var structure = {
                     css : "my_div_classname",
                     content : {
@@ -70,8 +71,9 @@ document.getElementById('middle').appendChild( fast_doc_frag );
                     }
                 }
                 
-                var fast_doc_frag = fastFrag.create( structure );
-                document.getElementById('middle').appendChild( fast_doc_frag );
+                
+                var fast_doc_frag = fastFrag.create( structure ); // transform from JSON to Dom Fragment
+                document.getElementById('middle').appendChild( fast_doc_frag ); // append
             </script>
       
     </body>

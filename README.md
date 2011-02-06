@@ -90,7 +90,7 @@ Do I need all this stuff?
 
 Nope, you only need [fastFrag.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.js) or [fastFrag.min.js](http://github.com/gregory80/fastFrag/blob/master/js/fastFrag.min.js) to use fastFrag. That's it. 
 
-The remaining portion of the project comprises samples, tests, a markdown extension, Textmate snippets, jQuery plugin sample, and finally, app engine code for converting HTML to fastFrag JSON, use it [here](http://json.fastfrag.org). 
+The remaining portion of the has been moved to fastFrag-utils and comprises samples, tests, a markdown extension, Textmate snippets, jQuery plugin sample, and finally, app engine code for converting HTML to fastFrag JSON, use it [here](http://json.fastfrag.org).  
 
 Usage
 -----
@@ -191,7 +191,6 @@ More information on usage can be found [here](http://fastfrag.org/post/4cd354958
 What happened to all the other stuff?
 ---------
 Most (if not all) non core files has been split out into their own repository. <https://github.com/gregory80/fastFrag-utils>
-
 
 
 FAQ
@@ -299,7 +298,7 @@ For more information, please refer to http://unlicense.org/
 Changelog
 -------
 1.1.2.2
-performance release. remove excessive dom fragment creation.
+performance release. remove excessive DOM fragment creation.
 
 1.1.1.01
 remove extra (uneeded dom frag creation)
@@ -323,9 +322,11 @@ Note: Starting in version 1.0.5 the following can be used for attributes, attr o
 Who's Using It?
 ---------
 
+If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastFrag/issues)! We will list your project and a link to the project homepage here. As well as a brief description, <fastfrag.org> has also been acquired and will feature people using the template, in the future.
+
 Currently, this project is limited to a handful of projects where I have been directly involved to some degree, for instance the bit.ly Chrome extension and fic.ly writes like as well as several projects I have yet to make public. See a list of my open projects [here on github](http://github.com/gregory80)
 
-If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastFrag/issues)! We will list your project and a link to the project homepage here. As well as a brief description, <fastfrag.org> has also been acquired and will feature people using the template, in the future.
+
 
 
 
