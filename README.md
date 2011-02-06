@@ -188,7 +188,10 @@ More information on usage can be found [here](http://fastfrag.org/post/4cd354958
     
 
 
- 
+What happened to all the other stuff?
+---------
+Most (if not all) non core files has been split out into their own repository. <https://github.com/gregory80/fastFrag-utils>
+
 
 
 FAQ
@@ -295,7 +298,8 @@ For more information, please refer to http://unlicense.org/
 
 Changelog
 -------
-
+1.1.2.2
+performance release. remove excessive dom fragment creation.
 
 1.1.1.01
 remove extra (uneeded dom frag creation)
