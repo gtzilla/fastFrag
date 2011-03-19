@@ -327,6 +327,13 @@ If you are using fastFrag -[tell use about it](http://github.com/gregory80/fastF
 Currently, this project is limited to a handful of projects where I have been directly involved to some degree, for instance the bit.ly Chrome extension and fic.ly writes like as well as several projects I have yet to make public. See a list of my open projects [here on github](http://github.com/gregory80)
 
 
+Thanks
+-------
+Thanks to Jeff Tierney of bit.ly for providing an IE7 patch on style attributes, found in release 1.1.3
+
+
+
+
 
 
 

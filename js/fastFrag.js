@@ -16,7 +16,7 @@
             base_frag=d.createDocumentFragment();
             return assembleHTML(params);
         },
-        version : "1.1.2.2"
+        version : "1.1.3"
 
     };
     window.fastFrag = fastFrag;
@@ -57,7 +57,9 @@
         for(var k in attrs) { 
             // yuck, setting disabled to false or none still breaks browsers, skip it instead
             if(k === "disabled" && !attrs[k]) { continue; }
-            el.setAttribute(k, _safe( attrs[k] ) );                                         
+            // IE7 barfs if you try to set style via a style attribute on the element
+            if(k.toLowerCase() === "style") { el.cssText = el.style.cssText = attrs[k];}
+            else { el.setAttribute(k, _safe( attrs[k] ) ); }                                 
         }
     }
     function _make_element( o ) {
