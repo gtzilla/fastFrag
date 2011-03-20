@@ -37,7 +37,7 @@
             <!-- // <script type="text/javascript" src="../js/fraglet_start.js"></script>             -->
             <script type="text/javascript" charset="utf-8">
                 // var num1 = fraglet( "my_first_fraglet" ), num2, num3;
-                
+                var mid_elem=document.getElementById("middle");
 
                 
                 // num2=fraglet.update("interesting");
@@ -50,10 +50,25 @@
                 
                 
                 // this is exactly what I want to hide...
+                var my_item = fraglet.init("bro");
+                my_item.list_basic("div", ["alpha", "bravo", "cat"]);
+                my_item.draw( mid_elem )
                 
-                fraglet.t( "foo", "simple_list", ["li", ["one", "two", "three"]]  );
+                fraglet.t("foo.bro", "list_basic", ["li", ["son", "brooklyn"]]);
+                fraglet.r("foo.bro");
                 
-                fraglet.r("foo", document.getElementById("middle") );
+                fraglet.t( "foo", "list_basic", ["li", ["one", "two", "three"]]  );
+                
+                fraglet.t( "foo", "list_basic", ["li", 10]  );  
+                
+                fraglet.d("foo").list_basic("li", ["a", "b", "c"])
+                              
+                
+                fraglet.t( "foo", "list_basic", ["li", ["one", "two", "three"], {
+                    css : "party"
+                }]  );                
+                
+                fraglet.r("foo", mid_elem );
                      
                 function make_image() {
                     

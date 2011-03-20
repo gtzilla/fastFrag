@@ -297,6 +297,20 @@ For more information, please refer to http://unlicense.org/
 
 Changelog
 -------
+1.1.3.1
+added support for 
+{
+    'c' : 'yer content',
+    'style' : "display:none;width:500px;"
+}
+
+In addition to 'content' for brevity. Added top level style controls.
+
+1.1.3
+added in fix for ie7 that didn't set style attributes, Thanks to Jeff Tierney of bit.ly.
+
+
+
 1.1.2.2
 performance release. remove excessive DOM fragment creation.
 
