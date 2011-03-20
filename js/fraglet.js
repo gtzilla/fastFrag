@@ -16,35 +16,35 @@
     var fraglet,F,_F,__ns; // declare, don't set
     
     Fraglet=function() {
+        // essentially on script load
         __ns={};
     }
     
     Fraglet.prototype = {
-        update : function( key ) {
-
+        all : function( key ) {
+            return __ns;
         },
-        init : function( key ) {
+        c : function( key ) {
             
             return this.__create(key);
         },
         d : function( key  ) {
+            // direct access
             return this.__create(key);       
         },
         t : function( key, action, payload ) {
-            var ns=this.__create(key);
+            var ns=this.__create(key), type=(typeof payload).toLowerCase();
+            if(type==="string") { payload=[payload] }
             ns[action].apply( ns, payload );
-            console.log(ns);
-            console.log(__ns);
         },
         r : function( key, el ) {
             var ns=this.__create(key);
+            if(!el) { 
+                throw("Element Required");
+            }
             ns.draw(el);
         },
-        __create : function( key ) {
-            // todo, manage for periods and other special chars in key
-            if(!__ns[key]) { __ns[key]=new F( key ); }
-            return __ns[key]
-        },
+
         render : function(key, el, frag ) {
             var type = typeof el, ns=this.__create(key), item;
             if( type.toLowerCase === "object" ) {
@@ -57,19 +57,41 @@
             if(ns) {
                 item=__ns[ns]
             } else {
-               item=el.appendChild( fastFrag.create(frag) );
+               // item=el.appendChild( fastFrag.create(frag) );
+               ns.append(frag);
+               ns.draw(el);
             }
-        }
+        },
+        
+        //
+        __create : function( key ) {
+            // todo, manage for periods and other special chars in key
+            if(!__ns[key]) { __ns[key]=new F( key ); }
+            return __ns[key]
+        },
     };
     
     F=function( ns ){
         this.__t=[];
         this.ns=ns;
+        this.__active_dom=[];
+        this.__root=null;        
     };
     
     F.prototype={
         // commands?? like a string of things to do??
         //
+        add_root : function( clss, opts ) {
+            // basically take the current list at __t
+            // and make a new content node and put it in an array
+            var n_frag={
+                'type' : opts && opts.type || "div",
+                'c' : this.__t.concat([]),
+                'css' : clss
+            }
+            this.__t=[];
+            this.__t.push(n_frag);
+        },
         preprend : function( frag_item ) {
             this.__t.shift(frag_item);
             return this;
@@ -107,11 +129,16 @@
             }
         },
         draw : function( el ) {
-            el.appendChild( fastFrag.create( this.__t ) );
+            this.__active_dom.push( el.appendChild( fastFrag.create( this.__t ) ) );
+        },
+        iterator : function( list, fn ) {
+            var i=0;
+            for(; i<list.length; i+=1) {
+                fn( list[i] );
+            }
         },
         /// this is neat..
         list_basic : function( type, data, opts ) {
-            console.log(this)
             var frag, i=0, items=[], f_items=[], wrapper_type="ul", t=(typeof data).toLowerCase();
             if(t === "object" && t.length) {
                 
@@ -162,7 +189,7 @@
             }
         }
     }
-    
+    // setup the fraglet
     global_frame['fraglet'] = new Fraglet();
         
 })(this);

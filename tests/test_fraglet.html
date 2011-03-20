@@ -50,16 +50,30 @@
                 
                 
                 // this is exactly what I want to hide...
-                var my_item = fraglet.init("bro");
+                var my_item = fraglet.c("bro");
                 my_item.list_basic("div", ["alpha", "bravo", "cat"]);
                 my_item.draw( mid_elem )
+                console.log(fraglet.all());
+                fraglet.t("son.bro", "list_basic", ["li", ["five towns", "borrows"], {
+                    css : "oops_item"
+                }]);
+                fraglet.t("son.bro", "list_basic", ["li", ["son", "brooklyn"]]);
+
+                fraglet.t("son.bro", "add_root", "grat_again");
+
+                fraglet.t("son.bro", "add_root", "the_class_is_cool");
+
+
+                fraglet.r("son.bro", mid_elem);
                 
-                fraglet.t("foo.bro", "list_basic", ["li", ["son", "brooklyn"]]);
-                fraglet.r("foo.bro");
+                fraglet.t("blah.blah.blah", "list_basic", ["li", ["ha", "ho"]]);
+                
+                fraglet.r("blah.blah.blah", mid_elem)
+                
                 
                 fraglet.t( "foo", "list_basic", ["li", ["one", "two", "three"]]  );
                 
-                fraglet.t( "foo", "list_basic", ["li", 10]  );  
+                fraglet.t( "foo", "list_basic", ["li", 5]  );  
                 
                 fraglet.d("foo").list_basic("li", ["a", "b", "c"])
                               
