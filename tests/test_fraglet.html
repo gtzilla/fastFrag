@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Test Fraglet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="just a little test for fraglet" />
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+                this page assumes the root directory is fastFrag, though it tries to use relative paths
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+            <script type="text/javascript" src="../js/fastFrag.js"></script>
+            <script type="text/javascript" src="../js/fraglet.js"></script>            
+            <script type="text/javascript" charset="utf-8">
+                var num1 = fraglet( "my_first_fraglet" ), num2, num3;
+                
+
+                
+                num2=fraglet.update("interesting");
+                
+                num3=fraglet.update(num1, "party");      // oh, that's handy, if I just happen to have the bare object
+                                                    // I can actually alter it... yey!
+                                                    
+                     console.log(num1, num2, num3)
+                     
+                
+                
+                // this is exactly what I want to hide...
+                
+                
+                     
+                function make_image() {
+                    
+                    var frag = {
+                        type : "img",
+                        id : "my_id",
+                        attr : {
+                            src : "http://images.contactmusic.com/videoimages/sbmg/waylon-jennings-only-daddy-thatll-walk-the-line.jpg",
+                            width : 480,
+                            height : 360
+                        }
+                    }
+                    
+                    document.getElementById("bottom").appendChild(fastFrag.create( frag  ) );
+                }
+                
+                make_image();
+                    
+            </script>
+    </body>
+</html>
