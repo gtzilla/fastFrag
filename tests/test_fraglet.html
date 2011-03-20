@@ -33,24 +33,27 @@
     
         
             <script type="text/javascript" src="../js/fastFrag.js"></script>
-            <script type="text/javascript" src="../js/fraglet_start.js"></script>            
+            <script type="text/javascript" src="../js/fraglet.js"></script> 
+            <!-- // <script type="text/javascript" src="../js/fraglet_start.js"></script>             -->
             <script type="text/javascript" charset="utf-8">
-                var num1 = fraglet( "my_first_fraglet" ), num2, num3;
+                // var num1 = fraglet( "my_first_fraglet" ), num2, num3;
                 
 
                 
-                num2=fraglet.update("interesting");
-                
-                num3=fraglet.update(num1, "party");      // oh, that's handy, if I just happen to have the bare object
+                // num2=fraglet.update("interesting");
+                // 
+                // num3=fraglet.update(num1, "party");      // oh, that's handy, if I just happen to have the bare object
                                                     // I can actually alter it... yey!
                                                     
-                     console.log(num1, num2, num3)
+                     // console.log(num1, num2, num3)
                      
                 
                 
                 // this is exactly what I want to hide...
                 
+                fraglet.t( "foo", "simple_list", ["li", ["one", "two", "three"]]  );
                 
+                fraglet.r("foo", document.getElementById("middle") );
                      
                 function make_image() {
                     

@@ -16,7 +16,7 @@
             base_frag=d.createDocumentFragment();
             return assembleHTML(params);
         },
-        version : "1.1.3"
+        version : "1.1.3.1"
 
     };
     window.fastFrag = fastFrag;
@@ -58,6 +58,7 @@
             // yuck, setting disabled to false or none still breaks browsers, skip it instead
             if(k === "disabled" && !attrs[k]) { continue; }
             // IE7 barfs if you try to set style via a style attribute on the element
+            // deprecate this in favor of top level?
             if(k.toLowerCase() === "style") { el.cssText = el.style.cssText = attrs[k];}
             else { el.setAttribute(k, _safe( attrs[k] ) ); }                                 
         }
@@ -69,19 +70,20 @@
         // Starting in ver1.0.5, can use any mix of o.attributes || o.attr  || o.attrs
         if(o.attributes || o.attr || o.attrs) { _mke_attribute( el, o.attributes || o.attr  || o.attrs ); }
         el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
+        if(o.style) { el.cssText = el.style.cssText=o.style; } // add style attribute..
         return el;
     }
 
     function _process_node( o ) {
-        var txt=null, content_type = typeof o.content, txt_value;
+        var txt=null, cntnt=o.c || o.content, content_type = typeof cntnt, txt_value;
         // JS thinks both Object and Array are typeof object, let assembleHTML guide it 
         if( content_type === "object") {
-            txt = assembleHTML( o.content );
+            txt = assembleHTML( cntnt );
         } else if(content_type === "string") {
-            txt = d.createTextNode( o.content );
+            txt = d.createTextNode( cntnt );
         } else {
             // this might be an intger or float or boolean, it's all text to HTML..
-            txt_value = (o.content !== undefined) ? (o.content.toString() || "")  : "";
+            txt_value = (cntnt !== undefined) ? (cntnt.toString() || "")  : "";
             txt = d.createTextNode( txt_value );
         }
         return txt        
