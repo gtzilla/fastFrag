@@ -15,12 +15,43 @@
 (function(global_frame) {
     var fraglet,F,_F,__ns; // declare, don't set
     
+    
+    /*
+        A single template, stored at __ns is an F object
+        
+        Fraglet tracks the combination of all template
+    */
     Fraglet=function() {
         // essentially on script load
         __ns={};
     }
     
     Fraglet.prototype = {
+        
+        lnk : function( href, txt ) {
+            return {
+                'type' : 'a',
+                'attr' : {
+                    'href' : href
+                },
+                'c' : txt || href
+            }
+        },
+        inpt : function( opts ) {
+            return [{
+                'type' : 'label',
+                'c' : opts.label_text || ""
+            },{
+                'type' : "input",
+                'attr' : {
+                    'type' : opts.type || "text",
+                    'name' : opts.name || null,
+                    'value' : opts.value || null
+                }
+            }]
+        },  
+        
+        // do stuff to the general management of templates      
         all : function( key ) {
             return __ns;
         },
@@ -32,10 +63,12 @@
             // direct access
             return this.__create(key);       
         },
-        t : function( key, action, payload ) {
-            var ns=this.__create(key), type=(typeof payload).toLowerCase();
-            if(type==="string") { payload=[payload] }
-            ns[action].apply( ns, payload );
+        // args (key, action, p,a,y,l,o,a,d) where p,a,y,l,o,a,d is N args needs for the fn_method
+        t : function( key, fn_method ) {
+            var payload=[], ns=this.__create(key);
+            if(!key && !action) { throw("Name and method required"); }
+            if(arguments.length > 2) { payload=Array.prototype.slice.call(arguments, 2); } 
+            ns[fn_method].apply( ns, payload );
         },
         r : function( key, el ) {
             var ns=this.__create(key);
@@ -44,7 +77,6 @@
             }
             ns.draw(el);
         },
-
         render : function(key, el, frag ) {
             var type = typeof el, ns=this.__create(key), item;
             if( type.toLowerCase === "object" ) {
@@ -75,12 +107,18 @@
         this.__t=[];
         this.ns=ns;
         this.__active_dom=[];
-        this.__root=null;        
+        this.__root=null; 
+        this.dom_reference=true;       
     };
     
     F.prototype={
-        // commands?? like a string of things to do??
-        //
+        /*
+            Holds data representation for fastFrag
+        */
+        // JS method overloading? sorta
+        event : function( fn ) {
+            fn.apply(this, Array.prototype.slice.call(arguments, 1) || []  );
+        },
         add_root : function( clss, opts ) {
             // basically take the current list at __t
             // and make a new content node and put it in an array
@@ -114,9 +152,6 @@
         },
         css : function( opts, set ) {
             var type=typeof opts;
-            // if(type.toLowerCase() === "string") {
-            //     
-            // }
         },
         extend : function() {
             // which element to extend??
@@ -129,15 +164,25 @@
             }
         },
         draw : function( el ) {
-            this.__active_dom.push( el.appendChild( fastFrag.create( this.__t ) ) );
+            el.appendChild( fastFrag.create( this.__t ) );
+            if(this.dom_reference) this.__active_dom.push( el );
         },
-        iterator : function( list, fn ) {
+        iterator : function( list, fn, opts ) {
+            // 'event'ish methods
+            /*
+                opts = {
+                    before : function()
+                    complete : function()
+                }
+            */
             var i=0;
+            if(opts && opts.before && (typeof opts.before).toLowerCase() === "function") opts.before.call(this);
             for(; i<list.length; i+=1) {
-                fn( list[i] );
+                fn.apply( this, [list[i]] );
             }
+            if(opts && opts.complete && (typeof opts.complete).toLowerCase() === "function") opts.complete.call(this);            
         },
-        /// this is neat..
+        // a basic list
         list_basic : function( type, data, opts ) {
             var frag, i=0, items=[], f_items=[], wrapper_type="ul", t=(typeof data).toLowerCase();
             if(t === "object" && t.length) {
@@ -168,6 +213,10 @@
             };
             this.__t.push(f_items);
             return this;
+        },
+        
+        list_links : function(type, data, opts) {
+            
         },
         
         find : function( opts ) {

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--
+    http://unlicense.org/
+    author: gregory tomlinson
+-->
+
+<!-- MIME TYPE Guidlines and references: http://hixie.ch/advocacy/xhtml -->
+    <head>
+        <title>Fraglet Test 2</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="awesome" />
+        <meta name="description" content="" />
+        
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="top">
+
+            </div> <!-- end #top -->
+            
+            <div id="middle">
+
+            </div> <!-- END #middle -->
+        
+            <div id="bottom">
+
+            </div> <!-- end #bottom -->
+            
+        </div> <!-- end #container -->
+    
+        
+        <script type="text/javascript" src="../js/fastFrag.js"></script>
+        <script type="text/javascript" src="../js/fraglet.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            fraglet.t("bar", "list_basic", "li", ["one", "two"]);
+            fraglet.t("bar", "iterator", ["foo", "bar", "bam", "bom", "ping", "pong"], function( item ){
+                console.log("item", this, item);
+                this.append({
+                    'c' : item
+                })
+            },{
+                before : function() {
+                    console.log("yey, first")
+                },
+                complete : function() {
+                    console.log("done!", this)
+                }
+            });
+            
+            fraglet.inpt({
+                label_text : "party"
+            });
+            
+            fraglet.r("bar", document.getElementById("middle"));
+            
+            console.log(fraglet.d("bar"));
+        </script>
+      
+    </body>
+</html>
