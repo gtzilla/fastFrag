@@ -13,7 +13,7 @@
 */
 
 (function(global_frame) {
-    var fraglet,F,_F,__ns; // declare, don't set
+    var fraglet,Fraglet,FEvent,F,_F,__ns; // declare, don't set
     
     
     /*
@@ -108,6 +108,7 @@
         this.ns=ns;
         this.__active_dom=[];
         this.__root=null; 
+        this.__listeners=[]; // for { el : "#whatever", type : "click mousedown", method : function(e) { ... } }
         this.dom_reference=true;       
     };
     
@@ -164,6 +165,7 @@
             }
         },
         draw : function( el ) {
+            // todo, check the listeners
             el.appendChild( fastFrag.create( this.__t ) );
             if(this.dom_reference) this.__active_dom.push( el );
         },
@@ -171,8 +173,8 @@
             // 'event'ish methods
             /*
                 opts = {
-                    before : function()
-                    complete : function()
+                    before : function(){ ... }
+                    complete : function(){ ... }
                 }
             */
             var i=0;
@@ -238,6 +240,25 @@
             }
         }
     }
+    
+    FEvent=function( el, opts ){
+        this.el=el;
+        // todo, use extend for opts...
+        if(opts&&opts.method&&(typeof opts.method).toLowerCase() === "function") { this.method=opts.method; }
+        this.opts=opts;
+    }
+    FEvent.prototype={
+        'el' : null,
+        'type' : "click",
+        'method' : function(){},
+        'add' : function() {
+            // iterate over this sucker, use something to attach the methods
+            // maybe just use jquery??
+            // hrm
+        }
+    }
+    
+    
     // setup the fraglet
     global_frame['fraglet'] = new Fraglet();
         
