@@ -24,6 +24,8 @@ You give fastFrag JSON and it gives you back HTML (a Document Fragment) that is 
 
 Convert your existing HTML to fastFrag JSON in less than a second visit [fastFrag converter](http://json.fastfrag.org), paste in HTML and get fastFrag JSON back.
 
+You can find the fastFrag conversion utilities here, [https://github.com/gregory80/fastFrag-utils](https://github.com/gregory80/fastFrag-utils)
+
 How does it work
 ----------
 
