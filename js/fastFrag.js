@@ -60,6 +60,7 @@
             // IE7 barfs if you try to set style via a style attribute on the element
             // deprecate this in favor of top level?
             if(k.toLowerCase() === "style") { el.cssText = el.style.cssText = attrs[k];}
+            if(k.toLowerCase() === "value") { el.value = attrs[k]; } // IE7
             else { el.setAttribute(k, _safe( attrs[k] ) ); }                                 
         }
     }
@@ -71,6 +72,7 @@
         if(o.attributes || o.attr || o.attrs) { _mke_attribute( el, o.attributes || o.attr  || o.attrs ); }
         el.id = (o.id) ? o.id : null;  el.className = (o.css) ? o.css : null;
         if(o.style) { el.cssText = el.style.cssText=o.style; } // add style attribute..
+        if(o.value) { el.value = o.value; } // add value attr.
         return el;
     }
 
